@@ -57,11 +57,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (iMsg)
     {
-    case WM_KEYDOWN:
+    case WM_CHAR:
         switch (wParam)
         {
-        case 'Q':
-            DestroyWindow(hWnd);
+        case 'Q': case 'q':
+            //DestroyWindow(hWnd);	/* Way 1 Win32API */
+        	SendMessage(hWnd, WM_DESTROY, 0, 0L);  /* Direct Send Message */
             break;
         }
         break;
