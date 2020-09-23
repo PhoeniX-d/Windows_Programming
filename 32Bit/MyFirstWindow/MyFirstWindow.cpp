@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ////////////////////////////////////////////////
 //											  //
 //	Name		:MyFirstWindow				  //
@@ -7,17 +7,7 @@
 //	Date		:20 Sept					  //
 //											  //
 ////////////////////////////////////////////////
-=======
-///////////////////////////////////////////////////
-//							
-//	Name		:MyFirstWindow
-//	Description	:My First Win32 Application
-//	Author		:Pranav Choudhary
-//	Date		:20 Sept 2020
-//
-///////////////////////////////////////////////////
 
->>>>>>> c974311977cec52cfb6673a0c5358fca292247e6
 // Headers
 #include <Windows.h>
 
@@ -25,7 +15,7 @@
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 // WinMain()
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int iCmdShow)
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpszCmdLine, _In_ int iCmdShow)
 {
 	// Code
 	// Declaration used of variables
@@ -38,7 +28,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	memset((void *)&wndclass, NULL, sizeof(WNDCLASSEX));
 
 	// Now Initialize members
-<<<<<<< HEAD
 	wndclass.cbSize = sizeof(WNDCLASSEX);						  /* size of structure */
 	wndclass.style = CS_HREDRAW | CS_VREDRAW;					  /* style of class */
 	wndclass.cbClsExtra = 0;									  /* extra info to class */
@@ -51,20 +40,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH); /* color of window background */
 	wndclass.lpszClassName = szAppName;							  /*  name of class */
 	wndclass.lpszMenuName = NULL;								  /* name of menu */
-=======
-	wndclass.cbSize = sizeof(WNDCLASSEX);				/* size of structure */
-	wndclass.style = CS_HREDRAW | CS_VREDRAW;			/* style of class */
-	wndclass.cbClsExtra = 0;					/* extra info to class */
-	wndclass.cbWndExtra = 0;					/* extra info to window */
-	wndclass.lpfnWndProc = WndProc;					/* where to go when even occurs */
-	wndclass.hInstance = hInstance;					/* which program window */
-	wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);		/* loads default icon for window */
-	wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);		/* loads default minimize icon for window */
-	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);			/* loads default cursor for window */
-	wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);	/* color of window background */
-	wndclass.lpszClassName = szAppName;				/* name of class */
-	wndclass.lpszMenuName = NULL;					/* name of menu */
->>>>>>> c974311977cec52cfb6673a0c5358fca292247e6
 
 	// Register WNDCLASSEX object to OS
 	RegisterClassEx(&wndclass);
@@ -72,7 +47,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	// Create a window in memory
 	hwnd = CreateWindow(
 
-<<<<<<< HEAD
 		szAppName,						 /* Name of our Application */
 		TEXT("MyFirstWin32Application"), /* Name of caption of our appliction*/
 		WS_OVERLAPPEDWINDOW,			 /* Style of window */
@@ -85,21 +59,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 		hInstance,						 /* Handle of this program */
 		NULL							 /* Creation paramter(extra) for more information*/
 	);
-=======
-		szAppName,				/* Name of our Application */
-		TEXT("MyFirstWin32Application"), 	/* Name of caption of our appliction*/	
-		WS_OVERLAPPEDWINDOW,			/* Style of window */
-		CW_USEDEFAULT,				/* x coordinate of window (from leftop) */
-		CW_USEDEFAULT,				/* y coordinate of window (from leftop) */
-		CW_USEDEFAULT,				/* Height of our window in pexels */
-		CW_USEDEFAULT,				/* Width of our window in pixels */
-		NULL,					/* Handle of Parent Window(here NULL as Desktop is parent)*/
-		NULL,					/* Handle of Menu */	
-		hInstance,				/* Handle of this program */
-		NULL				/* Creation paramter(extra) for more information*/
-		);
->>>>>>> c974311977cec52cfb6673a0c5358fca292247e6
-
 	// Now Display window present in memory
 	ShowWindow(hwnd, iCmdShow);
 
@@ -107,21 +66,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	UpdateWindow(hwnd);
 
 	//Now start Message loop or Message pump ("The Heart of Fetus")
-<<<<<<< HEAD
-	while (GetMessage(
-		&msg, /* Pass empty msg object to message pool to get filled with msg */
-		NULL, /* We want all msgs from Parent as well as from all children */
-		0,	  /* No Message filter lower limit */
-		0	  /* No Message filter upper limit */
-		))
-=======
 	while(GetMessage(
 			&msg,		/* Pass empty msg object to message pool to get filled with msg */
 			NULL,		/* We want all msgs from Parent as well as from all children */
 			0,		/* No Message filter lower limit */
 			0		/* No Message filter upper limit */		
 			))
->>>>>>> c974311977cec52cfb6673a0c5358fca292247e6
 	{
 		/* 	
 		*	Our emptied msg will get filled with all information 

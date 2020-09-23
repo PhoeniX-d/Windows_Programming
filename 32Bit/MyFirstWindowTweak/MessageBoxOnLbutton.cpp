@@ -62,7 +62,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	switch(iMsg)
 	{
 		case WM_LBUTTONDOWN:	
-			wsprintf(szStr, "Left-Mouse button is clicked!!");				
+			wsprintf(szStr, L"Left-Mouse button is clicked!!");				
 			MessageBox(hWnd, szStr, TEXT("MyMessage"), MB_OK);
 			break;
 		case WM_DESTROY:

@@ -69,7 +69,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 			 }
 			 break;
 		case WM_LBUTTONDOWN:	
-			wsprintf(szStr, "Number %d is pressed", iNum);				
+			wsprintf(szStr, TEXT("Number %d is pressed"), iNum);				
 			MessageBox(hWnd, szStr, TEXT("MyMessage"), MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
 			break;
 		case WM_DESTROY:

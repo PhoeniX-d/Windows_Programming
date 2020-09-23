@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Windows_Programming\IDE\Win32SDK _2018(2020)\Debug\Win32SDK _2018(2020).exe
+C:\Users\Pranav\Desktop\Programming\Windows_Programming\IDE\Win32SDK _2018(2020)\Debug\Win32SDK _2018(2020).pdb
