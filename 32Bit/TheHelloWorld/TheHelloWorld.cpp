@@ -9,7 +9,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 {
 	// Declaration of variables
 	WNDCLASSEX		wndclass;
-	MSG				msg;
+	MSG			msg;
 	HWND			hWnd;
 	TCHAR			szAppName[] = TEXT("PhoeniXWindow");
 
@@ -46,6 +46,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	ShowWindow(hWnd, iCmdShow);
 	UpdateWindow(hWnd);
 
+	// Message Loop
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);
@@ -58,7 +59,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
 	RECT		rc;
-	HDC			hdc;
+	HDC		hdc;
 	PAINTSTRUCT	ps;
 
 	switch (iMsg)
