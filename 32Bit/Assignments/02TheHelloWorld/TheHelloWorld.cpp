@@ -32,7 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 
 	hWnd = CreateWindow(
 		szAppName,
-		TEXT("Pranav Window"),
+		TEXT("Pranav\'s Window"),
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
@@ -58,7 +58,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
-	RECT		rc;
+	RECT	rc;
 	HDC		hdc;
 	PAINTSTRUCT	ps;
 
@@ -68,6 +68,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 		/* Get Specialist from OS */
 		hdc = BeginPaint(hWnd, &ps);
+		//hdc = GetDC(hWnd);
 		/* Get area to be painted */
 		GetClientRect(hWnd, &rc);
 		/* Set color of text */
@@ -78,6 +79,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		DrawText(hdc, TEXT("Hello, World!!"), -1, &rc, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 		/* As HDC is expensive resource of OS free after use */
 		EndPaint(hWnd, &ps);
+		//ReleaseDC(hWnd, hdc);
 		break;
 
 	case WM_DESTROY:
