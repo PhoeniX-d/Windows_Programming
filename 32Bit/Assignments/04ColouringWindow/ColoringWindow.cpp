@@ -1,5 +1,6 @@
 // Headers
 #include <windows.h>
+#include "MyHeader.h"
 
 // Global declaration
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -17,8 +18,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
     wndclass.cbClsExtra = 0;
     wndclass.cbWndExtra = 0;
     wndclass.hInstance = hInstance;
-    wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-    wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+    wndclass.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(MYICON));
+    wndclass.hIconSm = LoadIcon(hInstance, MAKEINTRESOURCE(MYICON));
     wndclass.hCursor = LoadCursor(NULL, IDC_HAND);
     wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
     wndclass.lpfnWndProc = WndProc;
