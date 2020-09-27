@@ -64,6 +64,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 	switch (iMsg)
 	{
+	
 	case WM_PAINT:
 
 		/* Get Specialist from OS */
@@ -82,8 +83,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		//ReleaseDC(hWnd, hdc);
 		break;
 
-	case WM_DESTROY:
-		
+	case WM_DESTROY:		
 		PostQuitMessage(0);
 		break;
 	
