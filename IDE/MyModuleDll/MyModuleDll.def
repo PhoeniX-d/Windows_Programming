@@ -1,0 +1,4 @@
+LIBRARY
+	MyModuleDll
+EXPORTS
+	MakeSquare

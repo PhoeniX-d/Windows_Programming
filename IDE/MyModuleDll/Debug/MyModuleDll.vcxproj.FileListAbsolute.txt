@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\MyModuleDll\Debug\MyModuleDll.dll
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\MyModuleDll\Debug\MyModuleDll.pdb
