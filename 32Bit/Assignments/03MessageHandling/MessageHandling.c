@@ -9,7 +9,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 {
     HWND hwnd;
     MSG msg;
-    WNDCLASSEX wndclass = {};
+    WNDCLASSEX wndclass;
     TCHAR szAppName[] = TEXT("MessageHandling");
 
     wndclass.cbSize = sizeof(WNDCLASSEX);
