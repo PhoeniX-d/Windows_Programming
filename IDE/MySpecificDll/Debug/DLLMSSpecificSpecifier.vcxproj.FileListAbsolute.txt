@@ -1,2 +1,0 @@
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\DLLMSSpecificSpecifier\Debug\MySpecificDll.dll
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\DLLMSSpecificSpecifier\Debug\MySpecificDll.pdb

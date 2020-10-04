@@ -1,5 +1,0 @@
-﻿  Using triplet "x86-windows" from "C:\vcpkg\installed\x86-windows\"
-  MyModuleDll.cpp
-MyModuleDll.def(2): warning LNK4017: MyModuleDll statement not supported for the target platform; ignored
-     Creating library C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\MyModuleDll\Debug\MyModuleDll.lib and object C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\MyModuleDll\Debug\MyModuleDll.exp
-  MyModuleDll.vcxproj -> C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\MyModuleDll\Debug\MyModuleDll.dll

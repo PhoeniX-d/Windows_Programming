@@ -1,4 +1,0 @@
-﻿  Using triplet "x86-windows" from "C:\vcpkg\installed\x86-windows\"
-  MyDllUser.cpp
-MyDllUser.obj : error LNK2019: unresolved external symbol "int __cdecl MakeSquare(int)" (?MakeSquare@@YAHH@Z) referenced in function "long __stdcall WndProc(struct HWND__ *,unsigned int,unsigned int,long)" (?WndProc@@YGJPAUHWND__@@IIJ@Z)
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\MyDllUser\Debug\MyDllUser.exe : fatal error LNK1120: 1 unresolved externals
