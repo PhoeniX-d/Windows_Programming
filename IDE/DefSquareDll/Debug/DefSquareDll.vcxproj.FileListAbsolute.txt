@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\DefSquareDll\Debug\DefSquareDll.dll
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\DefSquareDll\Debug\DefSquareDll.pdb
