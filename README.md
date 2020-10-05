@@ -9,7 +9,7 @@
   ```
 4. After successfull compilation .obj file will generate. link that file to libraries using
   ```
-  link NameOfObjectFile.obj user32.lib kernel32.lib gdi32.lib
+  link NameOfObjectFile.obj user32.lib kernel32.lib gdi32.lib /subsystem:windows
   ```
 5. After that just execute .exe
   ```
@@ -33,7 +33,7 @@
   
 5. Now link both Reources.res and NameOfObject.obj
   ```
-  link NameOfObjectFile.obj Resources.res user32.lib kernel32.lib gdi32.lib
+  link NameOfObjectFile.obj Resources.res user32.lib kernel32.lib gdi32.lib /subsystem:windows
   ```
 5. After that just execute .exe
   ```
@@ -41,3 +41,14 @@
   ```
   
 **Note : for x64 executable use x64 Native Tools command prompt**
+
+## C. How to build DLL using command line
+1. compile
+  ```
+  cl /c /EHsc [name of source file]
+  ```
+2. link
+  ```
+  link [name of obj file] /DLL user32.lib kernel32.lib gdi32.lib /subsystem:windows
+  ```
+
