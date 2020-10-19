@@ -25,6 +25,3 @@ const IID IID_ISum =
 // IID of ISubtract interface {3E65F05A-A19D-4236-9594-96B7538F7DDB}
 const IID IID_ISubtract =
 { 0x3e65f05a, 0xa19d, 0x4236, 0x95, 0x94, 0x96, 0xb7, 0x53, 0x8f, 0x7d, 0xdb };
-
-extern "C" HRESULT __stdcall  DllGetClassObject(REFCLSID, REFIID, void**);
-extern "C" HRESULT __stdcall  DllCanUnloadNow();

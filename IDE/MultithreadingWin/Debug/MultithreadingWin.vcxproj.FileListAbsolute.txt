@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\MultithreadingWin\Debug\MultithreadingWin.exe
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\MultithreadingWin\Debug\MultithreadingWin.pdb

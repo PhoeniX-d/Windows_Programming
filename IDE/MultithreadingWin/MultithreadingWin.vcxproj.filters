@@ -15,16 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ClassFactoryDllServerWithRegFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ClassFactoryDllClientWithRegFile.cpp">
+    <ClCompile Include="MultithreadingWin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassFactoryDllServerWithRegFile.reg" />
   </ItemGroup>
 </Project>
