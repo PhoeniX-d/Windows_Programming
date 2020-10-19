@@ -49,7 +49,7 @@ public:
 };
 
 //Global declarations
-long glNumberOfActiveComponents = 0;	/* Number of active components*/
+long glNumberOfActiveComponents = 0;		/* Number of active components*/
 long glNumberOfServerLocks = 0;			/* Number of locks on this dll*/
 
 // DllMain
@@ -76,14 +76,14 @@ CSumSubtract::CSumSubtract()
 {
 	// code
 	m_cRef = 1;	/* Harcoded innitialization to anticipate possible failure of QueryInterface */
-	InterlockedIncrement(&glNumberOfActiveComponents); /* increment global counter */
+	InterlockedIncrement(&glNumberOfActiveComponents); 	/* increment global counter */
 }
 
 // Implementation of CSumSubtract's destructor
 CSumSubtract::~CSumSubtract()
 {
 	// code
-	InterlockedDecrement(&glNumberOfActiveComponents); /* decrement global counter */
+	InterlockedDecrement(&glNumberOfActiveComponents);	/* decrement global counter */
 }
 
 // Implementaion of CSumSubtract's IUnknown methods
@@ -220,7 +220,7 @@ HRESULT CSumSubtractClassFactory::CreateInstance(IUnknown* pUnkOuter, REFIID rii
 
 	// get the required interface
 	hr = pCSumSubtract->QueryInterface(riid, ppv);
-	pCSumSubtract->Release(); /* anticipate possible failure of QueryInterface() */
+	pCSumSubtract->Release();	/* anticipate possible failure of QueryInterface() */
 	return (hr);
 }
 
@@ -257,7 +257,7 @@ extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, voi
 
 	// get the required interface
 	hr = pCSumSubtractClassFactory->QueryInterface(riid, ppv);
-	pCSumSubtractClassFactory->Release(); /* anticipate possible failure of QueryInterface() */
+	pCSumSubtractClassFactory->Release();	/* anticipate possible failure of QueryInterface() */
 	return (hr);
 }
 

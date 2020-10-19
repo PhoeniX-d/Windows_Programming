@@ -24,8 +24,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	hr = CoInitialize(NULL);
 	if (FAILED(hr))
 	{
-		MessageBox(NULL, TEXT("COM Library can not be initialized.\n Program will now exit.")
-			, TEXT("Program Error"), MB_OK);
+		MessageBox(NULL, TEXT("COM Library can not be initialized.\n Program will now exit."),
+			   TEXT("Program Error"), MB_OK);
 		exit(0);
 	}
 
@@ -125,7 +125,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 		// As ISubtract not needed onwards, relase it
 		pISubtract->Release();
-		pISubtract = NULL; /* Make released interface NULL */
+		pISubtract = NULL;	/* Make released interface NULL */
 
 		// Display result
 		wsprintf(str, TEXT("Subtraction of %d and %d is %d"), iNum1, iNum2, iSubtract);
