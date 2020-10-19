@@ -1,0 +1,6 @@
+﻿  Using triplet "x86-windows" from "C:\vcpkg\installed\x86-windows\"
+  ClassFactoryDllServerWithRegFile.cpp
+ClassFactoryDllServerWithRegFile.def : warning LNK4104: export of symbol 'DllGetClassObject' should be PRIVATE
+ClassFactoryDllServerWithRegFile.def : warning LNK4104: export of symbol 'DllCanUnloadNow' should be PRIVATE
+     Creating library C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\ClassFactoryDllServerWithRegFIle\Debug\ClassFactoryDllServerWithRegFIle.lib and object C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\ClassFactoryDllServerWithRegFIle\Debug\ClassFactoryDllServerWithRegFIle.exp
+  ClassFactoryDllServerWithRegFIle.vcxproj -> C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\ClassFactoryDllServerWithRegFIle\Debug\ClassFactoryDllServerWithRegFIle.dll
