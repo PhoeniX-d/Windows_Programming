@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TransitivityServer.cpp">
+    <ClCompile Include="TransitivityClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -23,10 +23,5 @@
     <ClInclude Include="TransitivityServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TransitivityServer.def">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

@@ -1,5 +1,0 @@
-Windows Registry Editor Version 5.00
-[HKEY_CLASS_ROOT\WOW6432NODE\CLSID\{DC305656-B849-4BDE-BB95-F7FCC9155A59}]
-@="ClassFactoryComDll"
-[HKEY_CLASS_ROOT\WOW6432NODE\CLSID\{DC305656-B849-4BDE-BB95-F7FCC9155A59}\InprocServer32]
-@="Client you should enter path of dll here"

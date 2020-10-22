@@ -7,7 +7,7 @@ class CSumSubtractMultiply : public ISum, ISubtract, IMultiply
 private:
 	long m_cRef;
 public:
-	
+
 	// Constructor 
 	CSumSubtractMultiply();
 
@@ -34,7 +34,7 @@ class CSumSubtractMultiplyClassFactory : public IClassFactory
 private:
 	long m_cRef;
 public:
-	
+
 	// Constructor 
 	CSumSubtractMultiplyClassFactory();
 
@@ -95,19 +95,19 @@ HRESULT CSumSubtractMultiply::QueryInterface(REFIID riid, void** ppv)
 	// code
 	if (riid == IID_IUnknown)
 	{
-		*ppv = static_cast<ISum *>(this);
+		*ppv = static_cast<ISum*>(this);
 	}
 	else if (riid == IID_ISum)
 	{
-		*ppv = static_cast<ISum *>(this);
+		*ppv = static_cast<ISum*>(this);
 	}
 	else if (riid == IID_ISubtract)
 	{
-		*ppv = static_cast<ISubtract *>(this);
+		*ppv = static_cast<ISubtract*>(this);
 	}
 	else if (riid == IID_IMultiply)
 	{
-		*ppv = static_cast<IMultiply *>(this);
+		*ppv = static_cast<IMultiply*>(this);
 	}
 	else
 	{
@@ -223,7 +223,7 @@ HRESULT CSumSubtractMultiplyClassFactory::CreateInstance(IUnknown* pUnkOuter, RE
 	{
 		return (CLASS_E_NOAGGREGATION);
 	}
-	
+
 	// variable declarations
 	CSumSubtractMultiply* pCSumSubtractMultiply = NULL;
 	HRESULT hr;
@@ -256,7 +256,7 @@ HRESULT CSumSubtractMultiplyClassFactory::LockServer(BOOL fLock)
 // Implementation of Exported functions form this Dll
 extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppv)
 {
-	if (rclsid != CLSID_SumSubtractMultiply)
+	if (rclsid != CLSID_SumSubtract)
 	{
 		return (CLASS_E_CLASSNOTAVAILABLE);
 	}

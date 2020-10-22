@@ -28,6 +28,5 @@
     <None Include="ClassFactoryDllServerWithRegFile.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="ClassFactoryDllServerWithRegFile.reg" />
   </ItemGroup>
 </Project>

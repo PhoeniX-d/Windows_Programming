@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\PropertiesOfIUknown\Transitivity\TransitivityClient\Debug\TransitivityClient.exe
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\PropertiesOfIUknown\Transitivity\TransitivityClient\Debug\TransitivityClient.pdb
