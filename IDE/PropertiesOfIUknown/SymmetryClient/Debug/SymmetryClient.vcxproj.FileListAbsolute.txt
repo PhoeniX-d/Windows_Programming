@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\PropertiesOfIUknown\Symmetry\SymmetryClient\Debug\SymmetryClient.exe
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\PropertiesOfIUknown\Symmetry\SymmetryClient\Debug\SymmetryClient.pdb

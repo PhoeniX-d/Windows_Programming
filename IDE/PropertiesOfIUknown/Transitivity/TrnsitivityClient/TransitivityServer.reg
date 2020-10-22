@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{FE3A2BD7-2D35-4F8E-B299-B74C01ECD750}]
+@="Transitivity"
+[HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{FE3A2BD7-2D35-4F8E-B299-B74C01ECD750}\InprocServer32]
+@="C:\\Windows\\SysWOW64\\TransitivityServer.dll"

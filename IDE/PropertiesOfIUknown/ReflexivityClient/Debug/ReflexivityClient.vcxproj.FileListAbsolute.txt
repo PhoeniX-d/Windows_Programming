@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\PropertiesOfIUknown\Reflexivity\ReflexivityClient\Debug\ReflexivityClient.exe
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\PropertiesOfIUknown\Reflexivity\ReflexivityClient\Debug\ReflexivityClient.pdb

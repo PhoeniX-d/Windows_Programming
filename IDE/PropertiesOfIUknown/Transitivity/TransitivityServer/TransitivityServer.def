@@ -1,0 +1,4 @@
+LIBRARY	TransitivityServer
+EXPORTS
+	DllGetClassObject	 PRIVATE
+	DllCanUnloadNow		 PRIVATE
