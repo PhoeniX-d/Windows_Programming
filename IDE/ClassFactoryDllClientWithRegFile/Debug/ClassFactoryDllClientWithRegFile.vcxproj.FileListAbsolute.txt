@@ -1,2 +1,0 @@
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\ClassFactoryDllClientWithRegFile\Debug\ClassFactoryDllClientWithRegFile.exe
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\ClassFactoryDllClientWithRegFile\Debug\ClassFactoryDllClientWithRegFile.pdb
