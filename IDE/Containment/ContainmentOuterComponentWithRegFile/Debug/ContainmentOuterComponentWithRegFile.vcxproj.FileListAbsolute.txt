@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Containment\ContainmentOuterComponentWithRegFile\Debug\ContainmentOuterComponentWithRegFile.dll
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Containment\ContainmentOuterComponentWithRegFile\Debug\ContainmentOuterComponentWithRegFile.pdb

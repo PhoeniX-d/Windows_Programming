@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Containment\ClientOfContainmentPattern\Debug\ClientOfContainmentPattern.exe
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Containment\ClientOfContainmentPattern\Debug\ClientOfContainmentPattern.pdb
