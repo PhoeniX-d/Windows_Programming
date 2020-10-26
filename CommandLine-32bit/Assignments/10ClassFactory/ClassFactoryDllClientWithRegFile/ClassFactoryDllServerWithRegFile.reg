@@ -1,5 +1,0 @@
-Windows Registry Editor Version 5.00
-[HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{DC305656-B849-4BDE-BB95-F7FCC9155A59}]
-@="ClassFactoryComDll"
-[HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{DC305656-B849-4BDE-BB95-F7FCC9155A59}\InprocServer32]
-@="C:\\Windows\\SysWoW64\\ClassFactoryDllServerWithRegFile.dll"

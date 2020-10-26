@@ -1,61 +1,62 @@
 #include <windows.h>
 #include "ContainmentInnerComponentWithRegFile.h"
 
-// Class declaration
+/* class declaration */
 class CMultiplicationDivision : public IMultiplication, IDivision
 {
 private:
 	long m_cRef;
+
 public:
 
-	// Constructor 
+	/* constructor declaration */
 	CMultiplicationDivision();
 
-	// Destructor
+	/* destructor declaration */
 	~CMultiplicationDivision();
 
-	// IUnknowm specific method declaration (inherited)
+	/* IUnknown specific methods declarations */
 	HRESULT __stdcall QueryInterface(REFIID, void**);
 	ULONG __stdcall AddRef();
 	ULONG __stdcall Release();
 
-	// IMultiplication specific method declaration (inherited)
+	/* IMultiplciation specific method declraration */
 	HRESULT __stdcall MultiplicationOfTwoIntegers(int, int, int*);
 
-	// IDivision specific method declaration (inherited)
+	/* IDivision specific methods declaration */
 	HRESULT __stdcall DivisionOfTwoIntegers(int, int, int*);
 };
 
-class CMultiplicationDivisionClassFactory : public IClassFactory
+class CMultiplicationDivisionClassFactory :public IClassFactory
 {
 private:
 	long m_cRef;
+
 public:
 
-	// Constructor 
+	/* constructor declaration */
 	CMultiplicationDivisionClassFactory();
 
-	// Destructor
+	/* destructor declaration */
 	~CMultiplicationDivisionClassFactory();
 
-	// IUnknown specific method declaration (inherited)
+	/* IUnknown specific methods declaration */
 	HRESULT __stdcall QueryInterface(REFIID, void**);
 	ULONG __stdcall AddRef();
 	ULONG __stdcall Release();
 
-	// IClassFactory specific method declaration (inherited)
+	/* CMultiplicationDivisionClassFactory specific methods declaration */
 	HRESULT __stdcall CreateInstance(IUnknown*, REFIID, void**);
 	HRESULT __stdcall LockServer(BOOL);
 };
 
-//Global declarations
-long glNumberOfActiveComponents = 0;		/* Number of active components*/
-long glNumberOfServerLocks = 0;			/* Number of locks on this dll*/
+/* global variable */
+long glNumberOfActiveComponent = 0;
+long glNumberOfServerLocks = 0;
 
-// DllMain
+/* DllMain */
 BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
 {
-	// code
 	switch (dwReason)
 	{
 	case DLL_PROCESS_ATTACH:
@@ -67,41 +68,32 @@ BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
 	case DLL_PROCESS_DETACH:
 		break;
 	}
-
 	return (TRUE);
 }
 
-// Implementaion of CMultiplicationDivision's constructor
+/* Implementaion of CMultiplication  methods */
 CMultiplicationDivision::CMultiplicationDivision()
 {
 	// code
-	m_cRef = 1;	/* Harcoded innitialization to anticipate possible failure of QueryInterface */
-	InterlockedIncrement(&glNumberOfActiveComponents); 	/* increment global counter */
+	m_cRef = 1;	/* hardcoded to anticipate possible failure of QueryInterface */
+	InterlockedIncrement(&glNumberOfActiveComponent);
 }
 
-// Implementation of CMultiplicationDivision's destructor
 CMultiplicationDivision::~CMultiplicationDivision()
 {
 	// code
-	InterlockedDecrement(&glNumberOfActiveComponents);	/* decrement global counter */
+	InterlockedDecrement(&glNumberOfActiveComponent);
 }
 
-// Implementaion of CMultiplicationDivision's IUnknown methods
 HRESULT CMultiplicationDivision::QueryInterface(REFIID riid, void** ppv)
 {
 	// code
 	if (riid == IID_IUnknown)
-	{
 		*ppv = static_cast<IMultiplication*>(this);
-	}
 	else if (riid == IID_IMultiplication)
-	{
 		*ppv = static_cast<IMultiplication*>(this);
-	}
 	else if (riid == IID_IDivision)
-	{
 		*ppv = static_cast<IDivision*>(this);
-	}
 	else
 	{
 		*ppv = NULL;
@@ -131,53 +123,42 @@ ULONG CMultiplicationDivision::Release()
 	return (m_cRef);
 }
 
-// Implementaion of IMultiplication methods
 HRESULT CMultiplicationDivision::MultiplicationOfTwoIntegers(int num1, int num2, int* pMultiplication)
 {
-	// code
 	*pMultiplication = num1 * num2;
 	return (S_OK);
 }
 
-// Implementaion of IDivision methods
-HRESULT CMultiplicationDivision::DivisionOfTwoIntegers(int num1, int num2, int* pSubtract)
+HRESULT CMultiplicationDivision::DivisionOfTwoIntegers(int num1, int num2, int* pDivision)
 {
-	// code
-	*pSubtract = num1 / num2;
+	*pDivision= num1 / num2;
 	return (S_OK);
 }
 
-// Implementation of CMultiplicationDivisionClassFactory's constructor
+/* implementation of CMultiplicationDivisionClassFactory methods declaration */
 CMultiplicationDivisionClassFactory::CMultiplicationDivisionClassFactory()
 {
 	// code
-	m_cRef = 1;	/* Harcoded innitialization to anticipate possible failure of QueryInterface */
+	m_cRef = 1; /* hardcoded to anticipate possible failure of QueryInterface */
 }
 
-// Implementation of CMultiplicationDivisionClassFactory's destructor
 CMultiplicationDivisionClassFactory::~CMultiplicationDivisionClassFactory()
 {
 	// code
 }
 
-// Implementation of CMultiplicationDivisionClassFactory's IClassFactory's IUnknown's methods
 HRESULT CMultiplicationDivisionClassFactory::QueryInterface(REFIID riid, void** ppv)
 {
 	// code
 	if (riid == IID_IUnknown)
-	{
 		*ppv = static_cast<IClassFactory*>(this);
-	}
 	else if (riid == IID_IClassFactory)
-	{
 		*ppv = static_cast<IClassFactory*>(this);
-	}
 	else
 	{
 		*ppv = NULL;
 		return (E_NOINTERFACE);
 	}
-
 	reinterpret_cast<IUnknown*>(*ppv)->AddRef();
 	return (S_OK);
 }
@@ -201,26 +182,23 @@ ULONG CMultiplicationDivisionClassFactory::Release()
 	return (m_cRef);
 }
 
-// Implementaion of CMultiplicationDivisionClassFactory's IClassFactory's methods
 HRESULT CMultiplicationDivisionClassFactory::CreateInstance(IUnknown* pUnkOuter, REFIID riid, void** ppv)
 {
+	// code
+	CMultiplicationDivision* pCMultiplicationDivision = NULL;
+	HRESULT hr;
 	if (pUnkOuter != NULL)
 	{
 		return (CLASS_E_NOAGGREGATION);
 	}
 
-	// variable declarations
-	CMultiplicationDivision* pCMultiplicationDivision = NULL;
-	HRESULT hr;
 	pCMultiplicationDivision = new CMultiplicationDivision();
-	if (NULL == pCMultiplicationDivision)
+	if (pCMultiplicationDivision == NULL)
 	{
-		return (E_OUTOFMEMORY);
+		return(E_OUTOFMEMORY);
 	}
-
-	// get the required interface
 	hr = pCMultiplicationDivision->QueryInterface(riid, ppv);
-	pCMultiplicationDivision->Release();	/* anticipate possible failure of QueryInterface() */
+	pCMultiplicationDivision->Release();
 	return (hr);
 }
 
@@ -232,39 +210,36 @@ HRESULT CMultiplicationDivisionClassFactory::LockServer(BOOL fLock)
 		InterlockedIncrement(&glNumberOfServerLocks);
 	}
 	else
-	{
+	{		
 		InterlockedDecrement(&glNumberOfServerLocks);
 	}
 	return (S_OK);
 }
 
-// Implementation of Exported functions form this Dll
+/* Exported Dll method */
 extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppv)
 {
+	// code
 	if (rclsid != CLSID_MultiplicationDivision)
 	{
 		return (CLASS_E_CLASSNOTAVAILABLE);
 	}
-
-	// variable declarations
 	CMultiplicationDivisionClassFactory* pCMultiplicationDivisionClassFactory = NULL;
 	HRESULT hr;
 	pCMultiplicationDivisionClassFactory = new CMultiplicationDivisionClassFactory();
-	if (NULL == pCMultiplicationDivisionClassFactory)
+	if (pCMultiplicationDivisionClassFactory == NULL)
 	{
 		return (E_OUTOFMEMORY);
 	}
-
-	// get the required interface
 	hr = pCMultiplicationDivisionClassFactory->QueryInterface(riid, ppv);
-	pCMultiplicationDivisionClassFactory->Release();	/* anticipate possible failure of QueryInterface() */
-	return (hr);
+	pCMultiplicationDivisionClassFactory->Release();
+	return (S_OK);
 }
 
 extern "C" HRESULT __stdcall DllCanUnloadNow()
 {
-	// code
-	if (glNumberOfActiveComponents == 0 && glNumberOfServerLocks == 0)
+	/* code */
+	if (glNumberOfActiveComponent == 0 && glNumberOfServerLocks == 0)
 	{
 		return (S_OK);
 	}
