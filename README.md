@@ -39,9 +39,7 @@
   ```
   NameOfExe.exe
   ```
-  
-**Note : for x64 executable use x64 Native Tools command prompt**
-
+ **Note : for x64 executable exe use x64 Native Tools command prompt**
 ## C. How to build DLL using command line
 1. compile
   ```
@@ -51,4 +49,23 @@
   ```
   link [name of obj file] /DLL user32.lib kernel32.lib gdi32.lib /subsystem:windows
   ```
-
+## D. How to build DLL with Module defination file using command line
+1. compile
+  ```
+  cl /c /EHsc [name of source file]
+  ```
+2. link
+  ```
+  link [name of obj file] /DLL /DEF:[Name of .def file] user32.lib kernel32.lib gdi32.lib /subsystem:windows
+  ```
+ 
+## D. How to execute COM - ClassFactory and Containement code
+1. compile
+  ```
+  cl /c /EHsc [name of source file]
+  ```
+2. link
+  ```
+  link [name of obj file] user32.lib kernel32.lib gdi32.lib ole32.lib oleaut32.lib /subsystem:windows
+  ```
+ 
