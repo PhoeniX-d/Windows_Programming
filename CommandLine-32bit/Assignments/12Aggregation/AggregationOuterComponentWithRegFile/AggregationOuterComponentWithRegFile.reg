@@ -1,0 +1,5 @@
+Windows Registry Editior Version 5.00
+[HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{AFF7FFDA-9540-4C8F-9754-95C3BCB3A843}]
+@="COMAggregaetionOuterComponent"
+[HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{AFF7FFDA-9540-4C8F-9754-95C3BCB3A843}\InprocServer32]
+@="Clienty you should write your dll path here"

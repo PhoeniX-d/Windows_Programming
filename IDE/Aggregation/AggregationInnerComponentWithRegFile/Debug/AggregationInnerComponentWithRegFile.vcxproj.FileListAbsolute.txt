@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Aggregation\AggregationInnerComponentWithRegFile\Debug\AggregationInnerComponentWithRegFile.dll
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Aggregation\AggregationInnerComponentWithRegFile\Debug\AggregationInnerComponentWithRegFile.pdb
