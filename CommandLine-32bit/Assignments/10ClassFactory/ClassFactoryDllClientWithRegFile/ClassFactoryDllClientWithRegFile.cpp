@@ -5,27 +5,27 @@
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 // Global variable declaration
-ISum* pISum = NULL;
-ISubtract* pISubtract = NULL;
+ISum *pISum = NULL;
+ISubtract *pISubtract = NULL;
 
 // WinMain()
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int iCmdShow)
 {
 	// Declaration of variables
 	WNDCLASSEX wndclass;
-	MSG	msg;
+	MSG msg;
 	HWND hWnd;
 	TCHAR szAppName[] = TEXT("ComClient");
 	HRESULT hr;
 
-	ZeroMemory((void*)&wndclass, sizeof(WNDCLASSEX));
+	ZeroMemory((void *)&wndclass, sizeof(WNDCLASSEX));
 
 	// COM initialization
 	hr = CoInitialize(NULL);
 	if (FAILED(hr))
 	{
 		MessageBox(NULL, TEXT("COM Library can not be initialized.\n Program will now exit."),
-			   TEXT("Program Error"), MB_OK);
+				   TEXT("Program Error"), MB_OK);
 		exit(0);
 	}
 
@@ -81,14 +81,14 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	// variable delcaratioms
 	HRESULT hr;
 	int iNum1 = 0, iNum2 = 0, iSum = 0, iSubtract = 0;
-	TCHAR str[255] = { '\0' };
+	TCHAR str[255] = {'\0'};
 
 	// code
 	switch (iMsg)
 	{
 	case WM_CREATE:
 		hr = CoCreateInstance(CLSID_SumSubtract, NULL, CLSCTX_INPROC_SERVER,
-			IID_ISum, (void**)&pISum);
+							  IID_ISum, (void **)&pISum);
 		if (FAILED(hr))
 		{
 			MessageBox(NULL, TEXT("Interface cannot be obtained"), TEXT("Program Error"), MB_OK);
@@ -101,13 +101,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 		// Call SumOfTwoIntegers() of iSum to get the sum
 		pISum->SumOfTwoIntegers(iNum1, iNum2, &iSum);
-		
+
 		// Display result
 		wsprintf(str, TEXT("Sum of %d and %d is %d"), iNum1, iNum2, iSum);
 		MessageBox(hwnd, str, TEXT("RESULT"), MB_OK);
 
 		// Call QueryInterface on ISum, to get ISubtract's pointer
-		hr = pISum->QueryInterface(IID_ISubtract, (void**)&pISubtract);
+		hr = pISum->QueryInterface(IID_ISubtract, (void **)&pISubtract);
 		if (FAILED(hr))
 		{
 			MessageBox(hwnd, TEXT("ISubtract Interface cannot be obtained"), TEXT("ERROR"), MB_OK);
@@ -125,7 +125,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 		// As ISubtract not needed onwards, relase it
 		pISubtract->Release();
-		pISubtract = NULL;	/* Make released interface NULL */
+		pISubtract = NULL; /* Make released interface NULL */
 
 		// Display result
 		wsprintf(str, TEXT("Subtraction of %d and %d is %d"), iNum1, iNum2, iSubtract);

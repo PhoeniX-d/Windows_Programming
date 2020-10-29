@@ -2,6 +2,7 @@
 #include "ContainmentInnerComponentWithRegFile.h"
 #include "ContainmentOuterComponentWithRegFile.h"
 
+/* class declaration */
 class CSumSubtract : public ISum, ISubtract, IMultiplication, IDivision
 {
 private:
@@ -10,31 +11,30 @@ private:
 	IDivision *m_pIDivision;
 
 public:
-
-	/* constructor decl'n */
+	/* constructor declaration */
 	CSumSubtract();
 
-	/* destructor decl'n */
+	/* destructor declaration */
 	~CSumSubtract();
 
-	/* IUnknown specific methods declaration */
-	HRESULT __stdcall QueryInterface(REFIID, void**);
+	/* IUnknown specific methods declaration (inherited) */
+	HRESULT __stdcall QueryInterface(REFIID, void **);
 	ULONG __stdcall AddRef();
 	ULONG __stdcall Release();
 
-	/* ISum specific methods declaration */
-	HRESULT __stdcall SumOfTwoIntegers(int, int, int*);
+	/* ISum specific methods declaration (inherited) */
+	HRESULT __stdcall SumOfTwoIntegers(int, int, int *);
 
-	/* ISubtract specific methods declaration */
-	HRESULT __stdcall SubtractionOfTwoIntegers(int, int, int*);
+	/* ISubtraction specific methods declaration (inherited) */
+	HRESULT __stdcall SubtractionOfTwoIntegers(int, int, int *);
 
-	/* IMultiplication specific methods declaration */
-	HRESULT __stdcall MultiplicationOfTwoIntegers(int, int, int*);
+	/* IMultiplication specific methods declaration (inherited) */
+	HRESULT __stdcall MultiplicationOfTwoIntegers(int, int, int *);
 
-	/* IDivision specific methods declaration */
-	HRESULT __stdcall DivisionOfTwoIntegers(int, int, int*);
+	/* IDivision specific methods declaration (inherited) */
+	HRESULT __stdcall DivisionOfTwoIntegers(int, int, int *);
 
-	/* custom methods for inner component creation */
+	/* custome method to initialize inner component */
 	HRESULT __stdcall InitializeInnerComponent();
 };
 
@@ -44,31 +44,30 @@ private:
 	long m_cRef;
 
 public:
-
-	/* contructor decl'n */
+	/* constructor declaration */
 	CSumSubtractClassFactory();
 
-	/* destructro decl'n */
+	/* destructor declaration */
 	~CSumSubtractClassFactory();
 
-	/* IUnkown specific method declaration */
-	HRESULT __stdcall QueryInterface(REFIID, void**);
+	/* IUnknown specific methods declaration (inherited) */
+	HRESULT __stdcall QueryInterface(REFIID, void **);
 	ULONG __stdcall AddRef();
 	ULONG __stdcall Release();
 
-	/* IClassFactory specific methods declaration */
-	HRESULT __stdcall CreateInstance(IUnknown*, REFIID, void**);
+	/* CSumSubtractClassFactory specific method declaration */
+	HRESULT __stdcall CreateInstance(IUnknown *, REFIID, void **);
 	HRESULT __stdcall LockServer(BOOL);
 };
 
-/* global variable declaration */
+/* global variable */
 long glNumberOfActiveComponents = 0;
-long glNumberOfNumberOfLocks = 0;
-
+long glNumberOfServerLocks = 0;
 
 /* DllMain */
 BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
 {
+	/* code */
 	switch (dwReason)
 	{
 	case DLL_PROCESS_ATTACH:
@@ -83,11 +82,11 @@ BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
 	return (TRUE);
 }
 
-/* implementation of CSumSubtract methods delcaration  */
+/* implementation of CSumSutract methods */
 CSumSubtract::CSumSubtract()
 {
-	// code
-	m_cRef = 1;/* hardcoded to anticipate possible failure of QueryInterface */
+	/* code */
+	m_cRef = 1;
 	m_pIMultiplication = NULL;
 	m_pIDivision = NULL;
 	InterlockedIncrement(&glNumberOfActiveComponents);
@@ -95,125 +94,125 @@ CSumSubtract::CSumSubtract()
 
 CSumSubtract::~CSumSubtract()
 {
-	// code
+	/* code */
 	InterlockedDecrement(&glNumberOfActiveComponents);
 	if (m_pIMultiplication)
 	{
 		m_pIMultiplication->Release();
 		m_pIMultiplication = NULL;
 	}
-	else if(m_pIDivision)
+	else
 	{
 		m_pIDivision->Release();
 		m_pIDivision = NULL;
 	}
 }
 
-/* implementation of CSumSubtract's IUnknown's specific methods  */
-HRESULT CSumSubtract::QueryInterface(REFIID riid, void** ppv)
+HRESULT CSumSubtract::QueryInterface(REFIID riid, void **ppv)
 {
-	// code
+	/* code */
 	if (riid == IID_IUnknown)
-		*ppv = static_cast<ISum*>(this);
+		*ppv = static_cast<ISum *>(this);
 	else if (riid == IID_ISum)
-		*ppv = static_cast<ISum*>(this);
+		*ppv = static_cast<ISum *>(this);
 	else if (riid == IID_ISubtract)
-		*ppv = static_cast<ISubtract*>(this);
+		*ppv = static_cast<ISubtract *>(this);
 	else if (riid == IID_IMultiplication)
-		*ppv = static_cast<IMultiplication*>(this);
+		*ppv = static_cast<IMultiplication *>(this);
 	else if (riid == IID_IDivision)
-		*ppv = static_cast<IDivision*>(this);
+		*ppv = static_cast<IDivision *>(this);
 	else
 	{
 		*ppv = NULL;
 		return (E_NOINTERFACE);
 	}
-	reinterpret_cast<IUnknown*>(*ppv)->AddRef();
+	reinterpret_cast<IUnknown *>(*ppv)->AddRef();
 	return (S_OK);
 }
 
-
 ULONG CSumSubtract::AddRef()
 {
-	// code
+	/* code */
 	InterlockedIncrement(&m_cRef);
 	return (m_cRef);
 }
 
 ULONG CSumSubtract::Release()
 {
-	// code
+	/* code */
 	InterlockedDecrement(&m_cRef);
 	if (m_cRef == 0)
 	{
-		delete(this);
+		delete (this);
 		return (0);
 	}
 	return (m_cRef);
 }
 
-HRESULT CSumSubtract::SumOfTwoIntegers(int num1, int num2, int* pSum)
+HRESULT CSumSubtract::SumOfTwoIntegers(int num1, int num2, int *pSum)
 {
-	// code
+	/* code */
 	*pSum = num1 + num2;
 	return (S_OK);
 }
 
-HRESULT CSumSubtract::SubtractionOfTwoIntegers(int num1, int num2, int* pSubtract)
+HRESULT CSumSubtract::SubtractionOfTwoIntegers(int num1, int num2, int *pSubtract)
 {
-	// code
+	/* code */
 	*pSubtract = num1 - num2;
 	return (S_OK);
 }
 
-HRESULT CSumSubtract::MultiplicationOfTwoIntegers(int num1, int num2, int* pMultiplciation)
+HRESULT CSumSubtract::MultiplicationOfTwoIntegers(int num1, int num2, int *pMultiplication)
 {
-	// code
-	m_pIMultiplication->MultiplicationOfTwoIntegers(num1, num2, pMultiplciation);
+	/* code */
+	m_pIMultiplication->MultiplicationOfTwoIntegers(num1, num2, pMultiplication);
 	return (S_OK);
 }
 
-HRESULT CSumSubtract::DivisionOfTwoIntegers(int num1, int num2, int* pDivision)
+HRESULT CSumSubtract::DivisionOfTwoIntegers(int num1, int num2, int *pDivision)
 {
-	// code
+	/* code */
 	if (num2 != 0)
-	{
 		m_pIDivision->DivisionOfTwoIntegers(num1, num2, pDivision);
-	}
 	else
 	{
-		MessageBox(NULL, TEXT("Divide by Zero Error"), TEXT("Warning"), MB_OK);
+		MessageBox(NULL, TEXT("Divide By Zero"), TEXT("ERROR"), MB_OK);
+		return (S_FALSE);
 	}
 	return (S_OK);
 }
 
 HRESULT CSumSubtract::InitializeInnerComponent()
 {
-	// code
+	/* code */
 	HRESULT hr;
-	hr = CoCreateInstance(CLSID_MultiplicationDivision, NULL, CLSCTX_INPROC_SERVER, IID_IMultiplication, (void**)&m_pIMultiplication);
+	hr = CoCreateInstance(CLSID_MultiplicationDivision, NULL, CLSCTX_INPROC_SERVER,
+						  IID_IMultiplication, (void **)&m_pIMultiplication);
 	if (FAILED(hr))
 	{
-		MessageBox(NULL, TEXT("IMultiplication interface cannot be obtained from inner component"),
-			TEXT("ERROR"), MB_OK);
+		MessageBox(NULL, TEXT("IMultiplication interface cannot be obtained"), TEXT("Program Error"), MB_OK);
+		m_pIMultiplication = NULL;
 		return (E_FAIL);
 	}
 
-	hr = m_pIMultiplication->QueryInterface(IID_IDivision, (void**)&m_pIDivision);
+	hr = m_pIMultiplication->QueryInterface(IID_IDivision, (void **)&m_pIDivision);
 	if (FAILED(hr))
 	{
-		MessageBox(NULL, TEXT("IDivision interface cannot be obtained from inner component"),
-			TEXT("ERROR"), MB_OK);
+		MessageBox(NULL, TEXT("IDivision interface cannot be obtained"), TEXT("Program Error"), MB_OK);
+		m_pIMultiplication->Release();
+		m_pIMultiplication = NULL;
+		m_pIDivision = NULL;
 		return (E_FAIL);
 	}
-	return(hr);
+	return (S_OK);
 }
 
 /* implementation of CSumSubtractClassFactory specific methods  */
 CSumSubtractClassFactory::CSumSubtractClassFactory()
 {
 	// code
-	m_cRef = 1;/* hardcoded to anticipate possible failure of QueryInterface */
+	m_cRef = 1; /* hardcoded to anticipate possible failure of QueryInterface */
 }
 
 CSumSubtractClassFactory::~CSumSubtractClassFactory()
@@ -221,19 +220,19 @@ CSumSubtractClassFactory::~CSumSubtractClassFactory()
 	// code
 }
 
-HRESULT CSumSubtractClassFactory::QueryInterface(REFIID riid, void** ppv)
+HRESULT CSumSubtractClassFactory::QueryInterface(REFIID riid, void **ppv)
 {
 	// code
 	if (riid == IID_IUnknown)
-		*ppv = static_cast<IClassFactory*>(this);
+		*ppv = static_cast<IClassFactory *>(this);
 	else if (riid == IID_IClassFactory)
-		*ppv = static_cast<IClassFactory*>(this);
+		*ppv = static_cast<IClassFactory *>(this);
 	else
 	{
 		*ppv = NULL;
 		return (E_NOINTERFACE);
 	}
-	reinterpret_cast<IUnknown*>(*ppv)->AddRef();
+	reinterpret_cast<IUnknown *>(*ppv)->AddRef();
 	return (S_OK);
 }
 
@@ -250,20 +249,20 @@ ULONG CSumSubtractClassFactory::Release()
 	InterlockedDecrement(&m_cRef);
 	if (m_cRef == 0)
 	{
-		delete(this);
+		delete (this);
 		return (0);
 	}
 	return (m_cRef);
 }
 
-HRESULT CSumSubtractClassFactory::CreateInstance(IUnknown* pUnkOuter, REFIID riid, void** ppv)
+HRESULT CSumSubtractClassFactory::CreateInstance(IUnknown *pUnkOuter, REFIID riid, void **ppv)
 {
 	// code
 	if (NULL != pUnkOuter)
 	{
 		return (CLASS_E_NOAGGREGATION);
 	}
-	CSumSubtract* pCSumSubtract = NULL;
+	CSumSubtract *pCSumSubtract = NULL;
 	HRESULT hr;
 	pCSumSubtract = new CSumSubtract();
 	if (pCSumSubtract == NULL)
@@ -281,7 +280,6 @@ HRESULT CSumSubtractClassFactory::CreateInstance(IUnknown* pUnkOuter, REFIID rii
 	hr = pCSumSubtract->QueryInterface(riid, ppv);
 	pCSumSubtract->Release();
 	return (hr);
-
 }
 
 HRESULT CSumSubtractClassFactory::LockServer(BOOL fLock)
@@ -289,23 +287,23 @@ HRESULT CSumSubtractClassFactory::LockServer(BOOL fLock)
 	// code
 	if (fLock)
 	{
-		InterlockedIncrement(&glNumberOfNumberOfLocks);
+		InterlockedIncrement(&glNumberOfServerLocks);
 	}
 	else
 	{
-		InterlockedDecrement(&glNumberOfNumberOfLocks);
+		InterlockedDecrement(&glNumberOfServerLocks);
 	}
 	return (S_OK);
 }
 
-extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppv)
+extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void **ppv)
 {
 	// code
 	if (rclsid != CLSID_SumSubtract)
 	{
 		return (CLASS_E_CLASSNOTAVAILABLE);
 	}
-	CSumSubtractClassFactory* pCSumSubtractClassFactory = NULL;
+	CSumSubtractClassFactory *pCSumSubtractClassFactory = NULL;
 	HRESULT hr;
 	pCSumSubtractClassFactory = new CSumSubtractClassFactory();
 	if (pCSumSubtractClassFactory == NULL)
@@ -320,7 +318,7 @@ extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, voi
 extern "C" HRESULT __stdcall DllCanUnloadNow()
 {
 	// code
-	if (glNumberOfActiveComponents == 0 && glNumberOfNumberOfLocks == 0)
+	if (glNumberOfActiveComponents == 0 && glNumberOfServerLocks == 0)
 	{
 		return (S_OK);
 	}

@@ -1,61 +1,61 @@
 #include <windows.h>
 #include "ClassFactoryDllServerWithRegFile.h"
 
-// Class declaration
+/* class declration */
 class CSumSubtract : public ISum, ISubtract
 {
 private:
 	long m_cRef;
+
 public:
-	
-	// Constructor 
+	/* contructor declaration */
 	CSumSubtract();
 
-	// Destructor
+	/* destructor declaration */
 	~CSumSubtract();
 
-	// IUnknowm specific method declaration (inherited)
-	HRESULT __stdcall QueryInterface(REFIID, void**);
+	/* IUnknown specific methods declaration (inherited) */
+	HRESULT __stdcall QueryInterface(REFIID, void **);
 	ULONG __stdcall AddRef();
 	ULONG __stdcall Release();
 
-	// ISum specific method declaration (inherited)
-	HRESULT __stdcall SumOfTwoIntegers(int, int, int*);
+	/* ISum specific method declaration (inherited) */
+	HRESULT __stdcall SumOfTwoIntegers(int, int, int *);
 
-	// ISubtract specific method declaration (inherited)
-	HRESULT __stdcall SubtractionOfTwoIntegers(int, int, int*);
+	/* ISubtract specific method declaration (inherited) */
+	HRESULT __stdcall SubtractionOfTwoIntegers(int, int, int *);
 };
 
 class CSumSubtractClassFactory : public IClassFactory
 {
 private:
 	long m_cRef;
+
 public:
-	
-	// Constructor 
+	/* constructor declaration */
 	CSumSubtractClassFactory();
 
-	// Destructor
+	/* destructor declaration */
 	~CSumSubtractClassFactory();
 
-	// IUnknown specific method declaration (inherited)
-	HRESULT __stdcall QueryInterface(REFIID, void**);
+	/* CSumSubtractClassFactory's IClassFactory's IUnknown specific methods declaration */
+	HRESULT __stdcall QueryInterface(REFIID, void **);
 	ULONG __stdcall AddRef();
 	ULONG __stdcall Release();
 
-	// IClassFactory specific method declaration (inherited)
-	HRESULT __stdcall CreateInstance(IUnknown*, REFIID, void**);
+	/* CSumSubtractClassFactory specific methods declaration */
+	HRESULT __stdcall CreateInstance(IUnknown *, REFIID, void **);
 	HRESULT __stdcall LockServer(BOOL);
 };
 
-//Global declarations
-long glNumberOfActiveComponents = 0;		/* Number of active components*/
-long glNumberOfServerLocks = 0;			/* Number of locks on this dll*/
+/* global variables */
+long glNumberOfActiveComponents = 0;
+long glNumberOfServerLocks = 0;
 
-// DllMain
+/* DllMain() */
 BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
 {
-	// code
+	/* code */
 	switch (dwReason)
 	{
 	case DLL_PROCESS_ATTACH:
@@ -67,166 +67,145 @@ BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
 	case DLL_PROCESS_DETACH:
 		break;
 	}
-
 	return (TRUE);
 }
 
-// Implementaion of CSumSubtract's constructor
+/* implementation of CSumSubtract methods */
 CSumSubtract::CSumSubtract()
 {
-	// code
-	m_cRef = 1;	/* Harcoded innitialization to anticipate possible failure of QueryInterface */
-	InterlockedIncrement(&glNumberOfActiveComponents); 	/* increment global counter */
+	/* code */
+	m_cRef = 1; /* hardcoded to anticipate possible failure of QueryInterface due to late late bindings */
+	InterlockedIncrement(&glNumberOfActiveComponents);
 }
 
-// Implementation of CSumSubtract's destructor
 CSumSubtract::~CSumSubtract()
 {
-	// code
-	InterlockedDecrement(&glNumberOfActiveComponents);	/* decrement global counter */
+	/* code */
+	InterlockedDecrement(&glNumberOfActiveComponents);
 }
 
-// Implementaion of CSumSubtract's IUnknown methods
-HRESULT CSumSubtract::QueryInterface(REFIID riid, void** ppv)
+HRESULT CSumSubtract::QueryInterface(REFIID riid, void **ppv)
 {
-	// code
+	/* code */
 	if (riid == IID_IUnknown)
-	{
 		*ppv = static_cast<ISum *>(this);
-	}
 	else if (riid == IID_ISum)
-	{
 		*ppv = static_cast<ISum *>(this);
-	}
 	else if (riid == IID_ISubtract)
-	{
 		*ppv = static_cast<ISubtract *>(this);
-	}
 	else
 	{
 		*ppv = NULL;
 		return (E_NOINTERFACE);
 	}
-
-	reinterpret_cast<IUnknown*>(*ppv)->AddRef();
+	reinterpret_cast<IUnknown *>(*ppv)->AddRef();
 	return (S_OK);
 }
 
 ULONG CSumSubtract::AddRef()
 {
-	// code
+	/* code */
 	InterlockedIncrement(&m_cRef);
 	return (m_cRef);
 }
 
 ULONG CSumSubtract::Release()
 {
-	// code
+	/* code */
 	InterlockedDecrement(&m_cRef);
 	if (m_cRef == 0)
 	{
 		delete (this);
-		return (0);
+		return (m_cRef);
 	}
 	return (m_cRef);
 }
 
-// Implementaion of ISum methods
-HRESULT CSumSubtract::SumOfTwoIntegers(int num1, int num2, int* pSum)
+HRESULT CSumSubtract::SumOfTwoIntegers(int num1, int num2, int *pSum)
 {
-	// code
+	/* code */
 	*pSum = num1 + num2;
 	return (S_OK);
 }
 
-// Implementaion of ISubtract methods
-HRESULT CSumSubtract::SubtractionOfTwoIntegers(int num1, int num2, int* pSubtract)
+HRESULT CSumSubtract::SubtractionOfTwoIntegers(int num1, int num2, int *pSubtract)
 {
-	// code
+	/* code */
 	*pSubtract = num1 - num2;
 	return (S_OK);
 }
 
-// Implementation of CSumSubtractClassFactory's constructor
+/* implementation of CSumSubtractClassFactory specific methods */
 CSumSubtractClassFactory::CSumSubtractClassFactory()
 {
-	// code
-	m_cRef = 1;	/* Harcoded innitialization to anticipate possible failure of QueryInterface */
+	/* code */
+	m_cRef = 1; /* hardcoded to anticipate possible failure of QueryInterface due to late late binding */
 }
 
-// Implementation of CSumSubtractClassFactory's destructor
 CSumSubtractClassFactory::~CSumSubtractClassFactory()
 {
-	// code
+	/* code */
 }
 
-// Implementation of CSumSubtractClassFactory's IClassFactory's IUnknown's methods
-HRESULT CSumSubtractClassFactory::QueryInterface(REFIID riid, void** ppv)
+HRESULT CSumSubtractClassFactory::QueryInterface(REFIID riid, void **ppv)
 {
-	// code
+	/* code */
 	if (riid == IID_IUnknown)
-	{
-		*ppv = static_cast<IClassFactory*>(this);
-	}
+		*ppv = static_cast<IClassFactory *>(this);
 	else if (riid == IID_IClassFactory)
-	{
-		*ppv = static_cast<IClassFactory*>(this);
-	}
+		*ppv = static_cast<IClassFactory *>(this);
 	else
 	{
 		*ppv = NULL;
 		return (E_NOINTERFACE);
 	}
-
-	reinterpret_cast<IUnknown*>(*ppv)->AddRef();
+	reinterpret_cast<IUnknown *>(*ppv)->AddRef();
 	return (S_OK);
 }
 
 ULONG CSumSubtractClassFactory::AddRef()
 {
-	// code
+	/* code */
 	InterlockedIncrement(&m_cRef);
 	return (m_cRef);
 }
 
 ULONG CSumSubtractClassFactory::Release()
 {
-	// code
+	/* code */
 	InterlockedDecrement(&m_cRef);
 	if (m_cRef == 0)
 	{
 		delete (this);
-		return (0);
+		return (m_cRef);
 	}
 	return (m_cRef);
 }
 
-// Implementaion of CSumSubtractClassFactory's IClassFactory's methods
-HRESULT CSumSubtractClassFactory::CreateInstance(IUnknown* pUnkOuter, REFIID riid, void** ppv)
+HRESULT CSumSubtractClassFactory::CreateInstance(IUnknown *pUnkOuter, REFIID riid, void **ppv)
 {
+	/* code */
 	if (pUnkOuter != NULL)
 	{
 		return (CLASS_E_NOAGGREGATION);
 	}
-	
-	// variable declarations
-	CSumSubtract* pCSumSubtract = NULL;
+	CSumSubtract *pCSumSubtract = NULL;
 	HRESULT hr;
+
 	pCSumSubtract = new CSumSubtract();
 	if (NULL == pCSumSubtract)
 	{
 		return (E_OUTOFMEMORY);
 	}
 
-	// get the required interface
 	hr = pCSumSubtract->QueryInterface(riid, ppv);
-	pCSumSubtract->Release();	/* anticipate possible failure of QueryInterface() */
+	pCSumSubtract->Release();
 	return (hr);
 }
 
 HRESULT CSumSubtractClassFactory::LockServer(BOOL fLock)
 {
-	// code
+	/* code */
 	if (fLock)
 	{
 		InterlockedIncrement(&glNumberOfServerLocks);
@@ -238,32 +217,32 @@ HRESULT CSumSubtractClassFactory::LockServer(BOOL fLock)
 	return (S_OK);
 }
 
-// Implementation of Exported functions form this Dll
-extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppv)
+/* Dll exported function */
+extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void **ppv)
 {
+	/* code */
 	if (rclsid != CLSID_SumSubtract)
 	{
 		return (CLASS_E_CLASSNOTAVAILABLE);
 	}
-
-	// variable declarations
-	CSumSubtractClassFactory* pCSumSubtractClassFactory = NULL;
+	CSumSubtractClassFactory *pCSumSubtractClassFactory = NULL;
 	HRESULT hr;
+
 	pCSumSubtractClassFactory = new CSumSubtractClassFactory();
 	if (NULL == pCSumSubtractClassFactory)
 	{
 		return (E_OUTOFMEMORY);
 	}
 
-	// get the required interface
 	hr = pCSumSubtractClassFactory->QueryInterface(riid, ppv);
-	pCSumSubtractClassFactory->Release();	/* anticipate possible failure of QueryInterface() */
+	pCSumSubtractClassFactory->Release();
 	return (hr);
 }
 
+/* funtion to unload dll */
 extern "C" HRESULT __stdcall DllCanUnloadNow()
 {
-	// code
+	/* code */
 	if (glNumberOfActiveComponents == 0 && glNumberOfServerLocks == 0)
 	{
 		return (S_OK);
