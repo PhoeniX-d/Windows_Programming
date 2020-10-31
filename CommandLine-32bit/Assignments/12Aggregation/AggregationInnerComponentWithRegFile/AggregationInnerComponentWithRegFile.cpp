@@ -1,13 +1,15 @@
 #include <windows.h>
 #include "AggregationInnerComponentWithRegFile.h"
 
-/* interface declaration for internal use only (not to be included in .h file )*/
-interface INoAggregationIUnknown /* new */
+/* interface delcaration for internal use only (not to be included in .h file) */
+interface INoAggregationIUnknown
 {
     virtual HRESULT __stdcall QueryInterface_NoAggregation(REFIID, void **) = 0;
-    virtual ULONG _stdcall AddRef_NoAggregation() = 0;
-    virtual ULONG _stdcall Release_NoAggregation() = 0;
+    virtual ULONG __stdcall AddRef_NoAggregation() = 0;
+    virtual ULONG __stdcall Release_NoAggregation() = 0;
 };
+
+/* class declaration */
 class CMultiplicationDivision : public INoAggregationIUnknown, IMultiplication, IDivision
 {
 private:
@@ -21,20 +23,20 @@ public:
     /* destructor declaration */
     ~CMultiplicationDivision();
 
-    /* Aggregation supported IUnknown supported methods declaration (inherited) */
+    /* Aggregation supported IUnknown specific methods declaration (inherited) */
     HRESULT __stdcall QueryInterface(REFIID, void **);
     ULONG __stdcall AddRef();
     ULONG __stdcall Release();
 
-    /* Aggregation non-supported IUnknown supported methods declaration (inherited) */
+    /* Aggregation not supported IUnknown specific methods declaration (inherited) */
     HRESULT __stdcall QueryInterface_NoAggregation(REFIID, void **);
     ULONG __stdcall AddRef_NoAggregation();
     ULONG __stdcall Release_NoAggregation();
 
-    /* IMultiplication specific methods declaration inherited */
+    /* IMultiplication specific method declaration (inherited) */
     HRESULT __stdcall MultiplicationOfTwoIntegers(int, int, int *);
 
-    /* IDivision specific methods declaration inherited */
+    /* IDivision specific method declaration (inherited) */
     HRESULT __stdcall DivisionOfTwoIntegers(int, int, int *);
 };
 
@@ -44,23 +46,23 @@ private:
     long m_cRef;
 
 public:
-    /* constructor decl'n */
+    /* constructor declaration */
     CMultiplicationDivisionClassFactory();
 
-    /* destructor decl'n */
+    /* destructor declaration */
     ~CMultiplicationDivisionClassFactory();
 
-    /* IUnknown specific methods declaration (inherited) */
+    /* IUnknown specific methods declaration(inherited) */
     HRESULT __stdcall QueryInterface(REFIID, void **);
     ULONG __stdcall AddRef();
     ULONG __stdcall Release();
 
-    /* IClassFactory specific methods declaration (inherited) */
+    /* IClassFactory specific methods declaration */
     HRESULT __stdcall CreateInstance(IUnknown *, REFIID, void **);
     HRESULT __stdcall LockServer(BOOL);
 };
 
-/* global variables */
+/* global declaration */
 long glNumberOfActiveComponents = 0;
 long glNumberOfServerLocks = 0;
 
@@ -82,19 +84,19 @@ BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
     return (TRUE);
 }
 
-/* implementation of CMultiplicationDivision methods */
-CMultiplicationDivision::CMultiplicationDivision(IUnknown *pUnknownOuter)
+/* Implementation of CMultiplicationDivision methods  */
+CMultiplicationDivision::CMultiplicationDivision(IUnknown *pUnkOuter)
 {
     /* code */
     m_cRef = 1;
     InterlockedIncrement(&glNumberOfActiveComponents);
-    if (pUnknownOuter != NULL)
+    if (pUnkOuter != NULL)
     {
-        this->m_pIUnknownOuter = pUnknownOuter;
+        m_pIUnknownOuter = pUnkOuter;
     }
     else
     {
-        this->m_pIUnknownOuter = reinterpret_cast<IUnknown *>(static_cast<INoAggregationIUnknown *>(this));
+        m_pIUnknownOuter = reinterpret_cast<IUnknown *>(static_cast<INoAggregationIUnknown *>(this));
     }
 }
 
@@ -104,23 +106,26 @@ CMultiplicationDivision::~CMultiplicationDivision()
     InterlockedDecrement(&glNumberOfActiveComponents);
 }
 
-/* implementation of CMultiplicationDivision's Aggregation supported IUnknown's methods */
+/* Aggregation supported */
 HRESULT CMultiplicationDivision::QueryInterface(REFIID riid, void **ppv)
 {
+    /* code */
     return (m_pIUnknownOuter->QueryInterface(riid, ppv));
 }
 
 ULONG CMultiplicationDivision::AddRef()
 {
+    /* code */
     return (m_pIUnknownOuter->AddRef());
 }
 
 ULONG CMultiplicationDivision::Release()
 {
+    /* code */
     return (m_pIUnknownOuter->Release());
 }
 
-/* implementation of CMultiplicationDivision's Aggregation non-supported IUnknown's methods */
+/* Aggregation Not supported */
 HRESULT CMultiplicationDivision::QueryInterface_NoAggregation(REFIID riid, void **ppv)
 {
     /* code */
@@ -149,7 +154,7 @@ ULONG CMultiplicationDivision::AddRef_NoAggregation()
 {
     /* code */
     InterlockedIncrement(&m_cRef);
-    return (m_cRef);
+    return (S_OK);
 }
 
 ULONG CMultiplicationDivision::Release_NoAggregation()
@@ -164,16 +169,16 @@ ULONG CMultiplicationDivision::Release_NoAggregation()
     return (m_cRef);
 }
 
-/* implementation of IMultiplication's method */
 HRESULT CMultiplicationDivision::MultiplicationOfTwoIntegers(int num1, int num2, int *pMultiplication)
 {
+    /* code */
     *pMultiplication = num1 * num2;
     return (S_OK);
 }
 
-/* implementation of IDivision's method */
 HRESULT CMultiplicationDivision::DivisionOfTwoIntegers(int num1, int num2, int *pDivision)
 {
+    /* code */
     *pDivision = num1 / num2;
     return (S_OK);
 }
@@ -261,6 +266,7 @@ HRESULT CMultiplicationDivisionClassFactory::LockServer(BOOL fLock)
     }
     return (S_OK);
 }
+
 /* Exported dll function */
 extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void **ppv)
 {

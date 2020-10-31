@@ -113,7 +113,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 			MessageBox(hwnd, TEXT("ISubtract Interface cannot be obtained"), TEXT("ERROR"), MB_OK);
 			DestroyWindow(hwnd);
 		}
-		// Again initialze aruments hardcoded
+		// Again initialze arguments hardcoded
 		iNum1 = 75;
 		iNum2 = 25;
 		pISubtract->SubtractionOfTwoIntegers(iNum1, iNum2, &iSubtract);

@@ -2,33 +2,34 @@
 #include "AggregationInnerComponentWithRegFile.h"
 #include "AggregationOuterComponentWithRegFile.h"
 
+/* class declaration */
 class CSumSubtract : public ISum, ISubtract
 {
 private:
     long m_cRef;
-    IUnknown *m_pIUnknownInner;
     IMultiplication *m_pIMultiplication;
     IDivision *m_pIDivision;
+    IUnknown *m_pIUnknownInner;
 
 public:
-    /* constructor decl'n */
+    /* constructor declaration */
     CSumSubtract();
 
-    /* destructor decl'n */
+    /* destructor declaration */
     ~CSumSubtract();
 
-    /* IUnknown specific method declaration */
-    HRESULT __stdcall QueryInterface(REFIID riid, void **ppv);
+    /* IUnknown specific method declaration (inherited) */
+    HRESULT __stdcall QueryInterface(REFIID, void **);
     ULONG __stdcall AddRef();
     ULONG __stdcall Release();
 
-    /* ISum specific method declaration */
+    /* ISum specific method declaration (inherited) */
     HRESULT __stdcall SumOfTwoIntegers(int, int, int *);
 
-    /* ISubtract specific method declaration */
+    /* ISum specific method declaration (inherited) */
     HRESULT __stdcall SubtractionOfTwoIntegers(int, int, int *);
 
-    /* custom method for inner component creation */
+    /* custom method to initialize inner component */
     HRESULT __stdcall InitializeInnerComponent();
 };
 
@@ -38,23 +39,23 @@ private:
     long m_cRef;
 
 public:
-    /* contructor decl'n */
+    /* constructor declaration */
     CSumSubtractClassFactory();
 
-    /* destructro decl'n */
+    /* destructor declaration */
     ~CSumSubtractClassFactory();
 
-    /* IUnkown specific method declaration */
+    /* IUnknown specific methods declaration (inherited)*/
     HRESULT __stdcall QueryInterface(REFIID, void **);
     ULONG __stdcall AddRef();
     ULONG __stdcall Release();
 
-    /* IClassFactory specific methods declaration */
+    /* CSumSubtractClassFactory specific methods declaration (inherited)*/
     HRESULT __stdcall CreateInstance(IUnknown *, REFIID, void **);
     HRESULT __stdcall LockServer(BOOL);
 };
 
-/* global variables */
+/* global declaration */
 long glNumberOfActiveComponents = 0;
 long glNumberOfServerLocks = 0;
 
@@ -76,31 +77,32 @@ BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
     return (TRUE);
 }
 
-/* implementation of CSumSubtract specific methods */
+/* implementation of CSumSubtract methods */
 CSumSubtract::CSumSubtract()
 {
     /* code */
+    m_cRef = 1;
+    InterlockedIncrement(&glNumberOfActiveComponents);
     m_pIMultiplication = NULL;
     m_pIDivision = NULL;
     m_pIUnknownInner = NULL;
-    m_cRef = 1;
-    InterlockedIncrement(&glNumberOfActiveComponents);
 }
 
 CSumSubtract::~CSumSubtract()
 {
+    /* code */
     InterlockedDecrement(&glNumberOfActiveComponents);
     if (m_pIMultiplication)
     {
         m_pIMultiplication->Release();
         m_pIMultiplication = NULL;
     }
-    else if (m_pIDivision)
+    if (m_pIDivision)
     {
         m_pIDivision->Release();
         m_pIDivision = NULL;
     }
-    else if (m_pIUnknownInner)
+    if (m_pIUnknownInner)
     {
         m_pIUnknownInner->Release();
         m_pIUnknownInner = NULL;
@@ -111,25 +113,15 @@ HRESULT CSumSubtract::QueryInterface(REFIID riid, void **ppv)
 {
     /* code */
     if (riid == IID_IUnknown)
-    {
         *ppv = static_cast<ISum *>(this);
-    }
     else if (riid == IID_ISum)
-    {
         *ppv = static_cast<ISum *>(this);
-    }
     else if (riid == IID_ISubtract)
-    {
         *ppv = static_cast<ISubtract *>(this);
-    }
     else if (riid == IID_IMultiplication)
-    {
         return (m_pIUnknownInner->QueryInterface(riid, ppv));
-    }
     else if (riid == IID_IDivision)
-    {
-        return (m_pIUnknownInner->QueryInterface(riid, ppv));
-    }
+        return (m_pIDivision->QueryInterface(riid, ppv));
     else
     {
         *ppv = NULL;
@@ -176,11 +168,10 @@ HRESULT CSumSubtract::InitializeInnerComponent()
 {
     /* code */
     HRESULT hr;
-    hr = CoCreateInstance(CLSID_MultiplicationDivision, reinterpret_cast<IUnknown *>(this),
-                          CLSCTX_INPROC_SERVER, IID_IUnknown, (void **)&m_pIUnknownInner);
+    hr = CoCreateInstance(CLSID_MultiplicationDivision, reinterpret_cast<IUnknown *>(this), CLSCTX_INPROC_SERVER, IID_IUnknown, (void **)&m_pIUnknownInner);
     if (FAILED(hr))
     {
-        MessageBox(NULL, TEXT("IUnknown Interface cannot be obtained from Inner component"), TEXT("Program ERROR"), MB_OK);
+        MessageBox(NULL, TEXT("Cannot Initialize Inner Component"), TEXT("Program Error"), MB_OK);
         return (E_FAIL);
     }
 
