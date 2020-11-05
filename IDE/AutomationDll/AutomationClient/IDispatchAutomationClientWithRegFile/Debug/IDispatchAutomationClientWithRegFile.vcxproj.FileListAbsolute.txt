@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationClient\IDispatchAutomationClientWithRegFile\Debug\IDispatchAutomationClientWithRegFile.exe
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationClient\IDispatchAutomationClientWithRegFile\Debug\IDispatchAutomationClientWithRegFile.pdb
