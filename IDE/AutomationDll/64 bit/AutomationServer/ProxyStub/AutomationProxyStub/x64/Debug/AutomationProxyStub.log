@@ -1,0 +1,7 @@
+﻿  Using triplet "x64-windows" from "C:\vcpkg\installed\x64-windows\"
+  AutomationProxyStub.c
+  AutomationProxyStubDllData.c
+  AutomationProxyStubGuids.c
+  Generating Code...
+     Creating library C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\64 bit\AutomationServer\ProxyStub\AutomationProxyStub\x64\Debug\AutomationProxyStub.lib and object C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\64 bit\AutomationServer\ProxyStub\AutomationProxyStub\x64\Debug\AutomationProxyStub.exp
+  AutomationProxyStub.vcxproj -> C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\64 bit\AutomationServer\ProxyStub\AutomationProxyStub\x64\Debug\AutomationProxyStub.dll

@@ -1,0 +1,6 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Automation\AutomationServer\ProxyStub\ProxyStub\Debug\ProxyStub.dll
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Automation\AutomationServer\ProxyStub\ProxyStub\Debug\ProxyStub.pdb
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationServer\ProxyStub\ProxyStub\Debug\AutomationProxyStub.dll
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationServer\ProxyStub\ProxyStub\Debug\AutomationProxyStub.pdb
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\32 bit\AutomationServer\ProxyStub\ProxyStub\Debug\AutomationProxyStub.dll
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\32 bit\AutomationServer\ProxyStub\ProxyStub\Debug\AutomationProxyStub.pdb

@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\64 bit\AutomationServer\AutomationDllServerWithRegFile\x64\Debug\AutomationDllServerWithRegFile.dll
+C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\64 bit\AutomationServer\AutomationDllServerWithRegFile\x64\Debug\AutomationDllServerWithRegFile.pdb

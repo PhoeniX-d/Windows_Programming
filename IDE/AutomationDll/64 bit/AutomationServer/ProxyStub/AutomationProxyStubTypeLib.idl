@@ -1,0 +1,35 @@
+import "unknwn.idl" ;
+/* IMyMath Interface */
+[
+    object,
+    uuid(97819FD8-05FB-496F-8A4A-404A56666374), /* IID of MyMath */
+    helpstring("IMyMath Interface"),
+    pointer_default(unique),
+    dual,
+    oleautomation
+]
+interface IMyMath : IDispatch
+{
+    import "oaidl.idl";
+    HRESULT SumOfTwoIntegers([in]int, [in]int, [out, retval]int*);
+    HRESULT SubtractionOfTwoIntegers([in]int, [in]int, [out, retval]int*);
+};
+/* Actual TypeLib related code */
+[
+    uuid(115D16ED-6EEB-4CD8-8DC1-9D76C413D11A), /* LIBID of Type Library */
+    version(1.0),
+    helpstring("MyMathAutomation component's type library")
+]
+library AutomationDllServerWithRegFileTypeLib
+{
+    importlib("stdole32.tlb");
+    /* component code */
+    [
+        uuid(E2339B4A-387D-4C46-BE3B-667AC160B89C),     /* CLSID of MyMath component */
+        helpstring("MyMathAutomation component class")
+    ]
+    coclass CMyMath
+    {
+        [default]interface IMyMath;
+    };
+};
