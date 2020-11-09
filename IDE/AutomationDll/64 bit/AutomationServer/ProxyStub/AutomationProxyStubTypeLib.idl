@@ -2,7 +2,7 @@ import "unknwn.idl" ;
 /* IMyMath Interface */
 [
     object,
-    uuid(97819FD8-05FB-496F-8A4A-404A56666374), /* IID of MyMath */
+    uuid(D3172311-1903-46C8-948B-A03EE8DC58C7), /* IID of MyMath */
     helpstring("IMyMath Interface"),
     pointer_default(unique),
     dual,
@@ -16,7 +16,7 @@ interface IMyMath : IDispatch
 };
 /* Actual TypeLib related code */
 [
-    uuid(115D16ED-6EEB-4CD8-8DC1-9D76C413D11A), /* LIBID of Type Library */
+    uuid(6520512F-BC21-470F-A1A0-1338094D4AE6), /* LIBID of Type Library */
     version(1.0),
     helpstring("MyMathAutomation component's type library")
 ]
@@ -25,7 +25,7 @@ library AutomationDllServerWithRegFileTypeLib
     importlib("stdole32.tlb");
     /* component code */
     [
-        uuid(E2339B4A-387D-4C46-BE3B-667AC160B89C),     /* CLSID of MyMath component */
+        uuid(6D5FD802-4FC6-4B51-ABBC-1BC52707B8E1),     /* CLSID of MyMath component */
         helpstring("MyMathAutomation component class")
     ]
     coclass CMyMath

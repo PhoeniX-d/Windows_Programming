@@ -64,9 +64,9 @@ public:
 long glNumberOfActiveComponents = 0;
 long glNumberOfServerLocks = 0;
 
-/* {115D16ED-6EEB-4CD8-8DC1-9D76C413D11A} */
+/* {6520512F-BC21-470F-A1A0-1338094D4AE6} */
 const GUID LIBID_AutomationServer =
-{ 0x115d16ed, 0x6eeb, 0x4cd8, 0x8d, 0xc1, 0x9d, 0x76, 0xc4, 0x13, 0xd1, 0x1a };
+{ 0x6520512f, 0xbc21, 0x470f, 0xa1, 0xa0, 0x13, 0x38, 0x9, 0x4d, 0x4a, 0xe6 };
 
 /* DllMain() */
 BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
@@ -274,7 +274,7 @@ ULONG CMyMathClassFactory::Release()
 	if (m_cRef == 0)
 	{
 		delete (this);
-		return (m_cRef);
+		return (0);
 	}
 	return (m_cRef);
 }

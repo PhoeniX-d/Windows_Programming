@@ -18,6 +18,17 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AutomationProxyStub.c" />
+    <ClCompile Include="AutomationProxyStubDllData.c" />
+    <ClCompile Include="AutomationProxyStubGuids.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AutomationProxyStub.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AutomationProxyStubHeaders.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -147,17 +158,6 @@
       <ModuleDefinitionFile>AutomationProxyStub.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="AutomationProxyStub.c" />
-    <ClCompile Include="AutomationProxyStubDllData.c" />
-    <ClCompile Include="AutomationProxyStubGuids.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AutomationProxyStubHeaders.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="AutomationProxyStub.def" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

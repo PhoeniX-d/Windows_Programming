@@ -84,7 +84,7 @@ EXTERN_C const IID IID_IMyMath;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
-    MIDL_INTERFACE("97819FD8-05FB-496F-8A4A-404A56666374")
+    MIDL_INTERFACE("D3172311-1903-46C8-948B-A03EE8DC58C7")
     IMyMath : public IDispatch
     {
     public:
@@ -235,7 +235,7 @@ EXTERN_C const CLSID CLSID_CMyMath;
 
 #ifdef __cplusplus
 
-class DECLSPEC_UUID("E2339B4A-387D-4C46-BE3B-667AC160B89C")
+class DECLSPEC_UUID("6D5FD802-4FC6-4B51-ABBC-1BC52707B8E1")
 CMyMath;
 #endif
 #endif /* __AutomationDllServerWithRegFileTypeLib_LIBRARY_DEFINED__ */
