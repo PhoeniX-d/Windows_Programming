@@ -1,1 +1,0 @@
-C:\Users\Pranav\Desktop\Programming\Windows Programming\WinRT\GUI\NoGrid\NoGrid.vcxproj;x64
