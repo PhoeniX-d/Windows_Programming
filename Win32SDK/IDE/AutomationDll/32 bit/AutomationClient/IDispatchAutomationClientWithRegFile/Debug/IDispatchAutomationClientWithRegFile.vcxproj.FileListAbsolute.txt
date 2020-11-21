@@ -1,4 +1,0 @@
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationClient\IDispatchAutomationClientWithRegFile\Debug\IDispatchAutomationClientWithRegFile.exe
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationClient\IDispatchAutomationClientWithRegFile\Debug\IDispatchAutomationClientWithRegFile.pdb
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\32 bit\AutomationClient\IDispatchAutomationClientWithRegFile\Debug\IDispatchAutomationClientWithRegFile.exe
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\32 bit\AutomationClient\IDispatchAutomationClientWithRegFile\Debug\IDispatchAutomationClientWithRegFile.pdb

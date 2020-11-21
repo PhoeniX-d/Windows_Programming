@@ -1,8 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (ProxyStub.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Using triplet "x86-windows" from "C:\vcpkg\installed\x86-windows\"
-  AutomationProxyStub.c
-  AutomationProxyStubDllData.c
-  AutomationProxyStubGuids.c
-  Generating Code...
-     Creating library C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\32 bit\AutomationServer\ProxyStub\ProxyStub\Debug\AutomationProxyStub.lib and object C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\32 bit\AutomationServer\ProxyStub\ProxyStub\Debug\AutomationProxyStub.exp
-  ProxyStub.vcxproj -> C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\32 bit\AutomationServer\ProxyStub\ProxyStub\Debug\AutomationProxyStub.dll

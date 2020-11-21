@@ -1,4 +1,0 @@
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationClient\ClassFactoryAutomationClientWithRegFile\Debug\ClassFactoryAutomationClientWithRegFile.exe
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationClient\ClassFactoryAutomationClientWithRegFile\Debug\ClassFactoryAutomationClientWithRegFile.pdb
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\32 bit\AutomationClient\ClassFactoryAutomationClientWithRegFile\Debug\ClassFactoryAutomationClientWithRegFile.exe
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\32 bit\AutomationClient\ClassFactoryAutomationClientWithRegFile\Debug\ClassFactoryAutomationClientWithRegFile.pdb

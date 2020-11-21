@@ -1,74 +1,67 @@
-#include <windows.h>
+#include <Windows.h>
 #include <stdio.h>
 #include "AutomationDllServerWithRegFile.h"
 
 /* CoClass declaration */
 class CMyMath : public IMyMath
 {
-private :
-
+private:
 	long m_cRef;
 	ITypeInfo* m_pITypeInfo;
 
 public:
 
-	/* constructor declaration */
 	CMyMath();
-
-	/* desstructor declaration */
 	~CMyMath();
 
-	/* IUnknown specific method declaration (inherited)*/
+	/* IUnknown specific methods declaration */
 	HRESULT __stdcall QueryInterface(REFIID, void**);
 	ULONG __stdcall AddRef();
 	ULONG __stdcall Release();
 
-	/* IDispatch specific methods declaration (inherited)*/
+	/* IDispatch specific method declaration */
 	HRESULT __stdcall GetTypeInfoCount(UINT*);
-	HRESULT __stdcall GetTypeInfo(UINT, LCID, ITypeInfo**);;
+	HRESULT __stdcall GetTypeInfo(UINT, LCID, ITypeInfo**);
 	HRESULT __stdcall GetIDsOfNames(REFIID, LPOLESTR*, UINT, LCID, DISPID*);
 	HRESULT __stdcall Invoke(DISPID, REFIID, LCID, WORD, DISPPARAMS*, VARIANT*, EXCEPINFO*, UINT*);
 
-	/* IMyMath specific method declaration */
+	/* IMyMath specific methods declarationd */
 	HRESULT __stdcall SumOfTwoIntegers(int, int, int*);
 	HRESULT __stdcall SubtractionOfTwoIntegers(int, int, int*);
 
-	/* Custome methods */
-	HRESULT __stdcall InitInstance();
+	/* Custom method */
+	HRESULT InitInstance();
 };
 
-/* ClassFactory class declaration */
 class CMyMathClassFactory : public IClassFactory
 {
 private:
 	long m_cRef;
 
 public:
-	/* constructor declaration */
-	CMyMathClassFactory();
 
-	/* destructor declaration */
+	CMyMathClassFactory();
 	~CMyMathClassFactory();
 
-	/* IUnknown specific methods declaration (inherited) */
+	/* IUnknown specific methods declaration */
 	HRESULT __stdcall QueryInterface(REFIID, void**);
 	ULONG __stdcall AddRef();
 	ULONG __stdcall Release();
 
-	/* CMyMathClassFactory specific methods declaration (inherited) */
+	/* IClassFactory specific methods declarations */
 	HRESULT __stdcall CreateInstance(IUnknown*, REFIID, void**);
 	HRESULT __stdcall LockServer(BOOL);
 };
 
-/* global variable */
+/* Global variables */
 long glNumberOfActiveComponents = 0;
 long glNumberOfServerLocks = 0;
 
-/* {6520512F-BC21-470F-A1A0-1338094D4AE6} */
+/* LIBID {A2B3CCAE-172F-459E-AD4F-6A59E3448885} */
 const GUID LIBID_AutomationServer =
-{ 0x6520512f, 0xbc21, 0x470f, 0xa1, 0xa0, 0x13, 0x38, 0x9, 0x4d, 0x4a, 0xe6 };
+{ 0xa2b3ccae, 0x172f, 0x459e, 0xad, 0x4f, 0x6a, 0x59, 0xe3, 0x44, 0x88, 0x85 };
 
-/* DllMain() */
+/* DllMain */
 BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
 {
 	/* code */
@@ -83,16 +76,14 @@ BOOL WINAPI DllMain(HMODULE hdll, DWORD dwReason, LPVOID lpReserved)
 	case DLL_PROCESS_DETACH:
 		break;
 	}
-
 	return (TRUE);
 }
 
-/* CMyMath methods implementation */
+/* Implementation of CMyMath's Methods */
 CMyMath::CMyMath()
 {
 	/* code */
 	m_cRef = 1;
-	m_pITypeInfo = NULL;
 	InterlockedIncrement(&glNumberOfActiveComponents);
 }
 
@@ -100,11 +91,6 @@ CMyMath::~CMyMath()
 {
 	/* code */
 	InterlockedDecrement(&glNumberOfActiveComponents);
-	if (m_pITypeInfo)
-	{
-		m_pITypeInfo->Release();
-		m_pITypeInfo = NULL;
-	}
 }
 
 HRESULT CMyMath::QueryInterface(REFIID riid, void** ppv)
@@ -121,7 +107,6 @@ HRESULT CMyMath::QueryInterface(REFIID riid, void** ppv)
 		*ppv = NULL;
 		return (E_NOINTERFACE);
 	}
-
 	reinterpret_cast<IUnknown*>(*ppv)->AddRef();
 	return (S_OK);
 }
@@ -130,7 +115,7 @@ ULONG CMyMath::AddRef()
 {
 	/* code */
 	InterlockedIncrement(&m_cRef);
-	return (m_cRef);
+	return(m_cRef);
 }
 
 ULONG CMyMath::Release()
@@ -141,10 +126,10 @@ ULONG CMyMath::Release()
 	{
 		m_pITypeInfo->Release();
 		m_pITypeInfo = NULL;
-		delete (this);
+		delete(this);
 		return (0);
 	}
-	return (m_cRef);
+	return(m_cRef);
 }
 
 HRESULT CMyMath::SumOfTwoIntegers(int num1, int num2, int* pSum)
@@ -154,85 +139,45 @@ HRESULT CMyMath::SumOfTwoIntegers(int num1, int num2, int* pSum)
 	return (S_OK);
 }
 
-HRESULT CMyMath::SubtractionOfTwoIntegers(int num1, int num2, int* pSubtract)
+HRESULT CMyMath::SubtractionOfTwoIntegers(int num1, int num2, int* pSum)
 {
 	/* code */
-	*pSubtract = num1 - num2;
+	*pSum = num1 - num2;
 	return (S_OK);
+
 }
 
 HRESULT CMyMath::InitInstance()
 {
 	/* code */
 	void ComErrorDescriptionString(HWND, HRESULT);
+
 	HRESULT hr;
 	ITypeLib* pITypeLib = NULL;
 	if (m_pITypeInfo == NULL)
 	{
-		hr = LoadRegTypeLib(LIBID_AutomationServer, 1, 0, 0x00, &pITypeLib);
+		hr = LoadRegTypeLib(LIBID_AutomationServer,
+			1, 0, /* major/minor version numbers */
+			0x00, /* LANG_NEUTRAL */
+			&pITypeLib);
 		if (FAILED(hr))
 		{
 			ComErrorDescriptionString(NULL, hr);
-			return (hr);
+			return(hr);
 		}
-
 		hr = pITypeLib->GetTypeInfoOfGuid(IID_IMyMath, &m_pITypeInfo);
 		if (FAILED(hr))
 		{
 			ComErrorDescriptionString(NULL, hr);
 			pITypeLib->Release();
-			return (hr);
+			return(hr);
 		}
 		pITypeLib->Release();
 	}
 	return (S_OK);
 }
 
-HRESULT CMyMath::GetTypeInfoCount(UINT* pCountTypeInfo)
-{
-	/* code */
-	/* ar we have type library it is 1, else 0 */
-	*pCountTypeInfo = 1;
-	return (S_OK);
-}
-
-HRESULT CMyMath::GetTypeInfo(UINT iTypeInfo, LCID lcid, ITypeInfo** ppITypeInfo)
-{
-	/* code */
-	*ppITypeInfo = NULL;
-	if (iTypeInfo != 0)
-	{
-		return (DISP_E_BADINDEX);
-	}
-	m_pITypeInfo->AddRef();
-	*ppITypeInfo = m_pITypeInfo;
-	return (S_OK);
-}
-
-HRESULT CMyMath::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId)
-{
-	/* code */
-	return (DispGetIDsOfNames(m_pITypeInfo, rgszNames, cNames, rgDispId));
-}
-
-HRESULT CMyMath::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags,
-	DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr)
-{
-	/* code */
-	HRESULT hr;
-	hr = DispInvoke(
-		this,
-		m_pITypeInfo,
-		dispIdMember,
-		wFlags,
-		pDispParams,
-		pVarResult,
-		pExcepInfo,
-		puArgErr);
-	return (hr);
-}
-
-/* CMyMathClassFactory methods implementation */
+/* Implementation of CMyMathClassFactory methods */
 CMyMathClassFactory::CMyMathClassFactory()
 {
 	/* code */
@@ -254,7 +199,7 @@ HRESULT CMyMathClassFactory::QueryInterface(REFIID riid, void** ppv)
 	else
 	{
 		*ppv = NULL;
-		return(E_NOINTERFACE);
+		return (E_NOINTERFACE);
 	}
 	reinterpret_cast<IUnknown*>(*ppv)->AddRef();
 	return (S_OK);
@@ -281,7 +226,7 @@ ULONG CMyMathClassFactory::Release()
 
 HRESULT CMyMathClassFactory::CreateInstance(IUnknown* pUnkOuter, REFIID riid, void** ppv)
 {
-	 /* code */
+	/* code */
 	if (pUnkOuter != NULL)
 	{
 		return (CLASS_E_NOAGGREGATION);
@@ -294,12 +239,12 @@ HRESULT CMyMathClassFactory::CreateInstance(IUnknown* pUnkOuter, REFIID riid, vo
 		return (E_OUTOFMEMORY);
 	}
 
-	/* call automation related init method */
+	/* call automation relarted method InitInstance() */
 	pCMyMath->InitInstance();
 
 	/* get requested interface */
 	hr = pCMyMath->QueryInterface(riid, ppv);
-	pCMyMath->Release();
+	pCMyMath->Release(); /* anticipate possible failure of queryinterface */
 	return (hr);
 }
 
@@ -317,22 +262,60 @@ HRESULT CMyMathClassFactory::LockServer(BOOL fLock)
 	return (S_OK);
 }
 
-/* Dll Exported fuctions */
+HRESULT CMyMath::GetTypeInfoCount(UINT* pCountTypeInfo)
+{
+	/* code */
+	/* as we have type library it is 1, else 0 */
+	*pCountTypeInfo = 1;
+	return (S_OK);
+}
+
+HRESULT CMyMath::GetTypeInfo(UINT iTypeInfo, LCID lcid, ITypeInfo** ppITypeInfo)
+{
+	/* code */
+	*ppITypeInfo = NULL;
+	if (iTypeInfo != 0)
+		return (DISP_E_BADINDEX);
+	m_pITypeInfo->AddRef();
+	*ppITypeInfo = m_pITypeInfo;
+	return (S_OK);
+}
+
+HRESULT CMyMath::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispid)
+{
+	/* code */
+	return (DispGetIDsOfNames(m_pITypeInfo, rgszNames, cNames, rgDispid));
+}
+
+HRESULT CMyMath::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr)
+{
+	/* code */
+	HRESULT hr;
+	hr = DispInvoke(this,
+		m_pITypeInfo,
+		dispIdMember,
+		wFlags,
+		pDispParams,
+		pVarResult,
+		pExcepInfo,
+		puArgErr);
+	return (hr);
+}
+
 extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppv)
 {
 	/* code */
-	if (rclsid != CLSID_MyMath)
-	{
-		return (CLASS_E_CLASSNOTAVAILABLE);
-	}
 	CMyMathClassFactory* pCMyMathClassFactory = NULL;
 	HRESULT hr;
+
+	if (rclsid != CLSID_MyMath)
+		return (CLASS_E_CLASSNOTAVAILABLE);
+
 	pCMyMathClassFactory = new CMyMathClassFactory();
 	if (pCMyMathClassFactory == NULL)
 	{
 		return (E_OUTOFMEMORY);
 	}
-
 	hr = pCMyMathClassFactory->QueryInterface(riid, ppv);
 	pCMyMathClassFactory->Release();
 	return (hr);
@@ -341,7 +324,7 @@ extern "C" HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, voi
 extern "C" HRESULT __stdcall DllCanUnloadNow()
 {
 	/* code */
-	if (glNumberOfActiveComponents == 0 && glNumberOfServerLocks == 0)
+	if (glNumberOfServerLocks == 0 && glNumberOfActiveComponents == 0)
 	{
 		return (S_OK);
 	}
@@ -355,24 +338,24 @@ void ComErrorDescriptionString(HWND hwnd, HRESULT hr)
 {
 	/* code */
 	TCHAR* szErrorMessage = NULL;
-	TCHAR szStr[255];
-
+	TCHAR str[255];
 	if (FACILITY_WINDOWS == HRESULT_FACILITY(hr))
-	{
 		hr = HRESULT_CODE(hr);
-	}
+	
 	if (FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
 		NULL,
 		hr,
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-		(LPTSTR)&szErrorMessage, 0, NULL) != 0)
+		(LPTSTR)&szErrorMessage,
+		0,
+		NULL) != 0)
 	{
-		swprintf_s(szStr, TEXT("%#X  :  %s"), hr, szErrorMessage);
+		swprintf_s(str, TEXT("%#X : %s"), hr, szErrorMessage);
 		LocalFree(szErrorMessage);
 	}
 	else
 	{
-		swprintf_s(szStr, TEXT("[Could not find description for error #% #x.]\n"), hr);
+		swprintf_s(str, TEXT("[Could not find a description for error # % #X.]\n"), hr);
 	}
-	MessageBox(hwnd, szStr, TEXT("COM ERROR"), MB_OK);
+	MessageBox(hwnd, str, TEXT("COM's ERROR"), MB_OK);
 }

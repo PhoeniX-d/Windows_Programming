@@ -1,3 +1,5 @@
 ﻿  Using triplet "x64-windows" from "C:\vcpkg\installed\x64-windows\"
   AutomationDllServerWithRegFile.cpp
-  AutomationDllServerWithRegFile.vcxproj -> C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\64 bit\AutomationServer\AutomationDllServerWithRegFile\x64\Debug\AutomationDllServerWithRegFile.dll
+     Creating library C:\Users\Pranav\Desktop\Programming\Windows Programming\Win32SDK\IDE\AutomationDll\64 bit\AutomationServer\AutomationDllServerWithRegFile\x64\Debug\AutomationDllServerWithRegFile.lib and object C:\Users\Pranav\Desktop\Programming\Windows Programming\Win32SDK\IDE\AutomationDll\64 bit\AutomationServer\AutomationDllServerWithRegFile\x64\Debug\AutomationDllServerWithRegFile.exp
+AutomationDllServerWithRegFile.exp : warning LNK4070: /OUT:AutomatioDllServerWithRegFile.dll directive in .EXP differs from output filename 'C:\Users\Pranav\Desktop\Programming\Windows Programming\Win32SDK\IDE\AutomationDll\64 bit\AutomationServer\AutomationDllServerWithRegFile\x64\Debug\AutomationDllServerWithRegFile.dll'; ignoring directive
+  AutomationDllServerWithRegFile.vcxproj -> C:\Users\Pranav\Desktop\Programming\Windows Programming\Win32SDK\IDE\AutomationDll\64 bit\AutomationServer\AutomationDllServerWithRegFile\x64\Debug\AutomationDllServerWithRegFile.dll

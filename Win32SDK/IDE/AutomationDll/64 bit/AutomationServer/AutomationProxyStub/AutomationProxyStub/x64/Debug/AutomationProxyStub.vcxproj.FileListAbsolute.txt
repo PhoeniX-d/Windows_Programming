@@ -1,0 +1,2 @@
+C:\Users\Pranav\Desktop\Programming\Windows Programming\Win32SDK\IDE\AutomationDll\64 bit\AutomationServer\AutomationProxyStub\AutomationProxyStub\x64\Debug\AutomationProxyStub.dll
+C:\Users\Pranav\Desktop\Programming\Windows Programming\Win32SDK\IDE\AutomationDll\64 bit\AutomationServer\AutomationProxyStub\AutomationProxyStub\x64\Debug\AutomationProxyStub.pdb

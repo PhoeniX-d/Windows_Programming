@@ -1,4 +1,0 @@
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Automation\AutomationDllServerWithRegFile\Debug\AutomationDllServerWithRegFile.dll
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\Automation\AutomationDllServerWithRegFile\Debug\AutomationDllServerWithRegFile.pdb
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationServer\AutomationDllServerWithRegFile\Debug\AutomationDllServerWithRegFile.dll
-C:\Users\Pranav\Desktop\Programming\Win32SDK\Windows_Programming\IDE\AutomationDll\AutomationServer\AutomationDllServerWithRegFile\Debug\AutomationDllServerWithRegFile.pdb
