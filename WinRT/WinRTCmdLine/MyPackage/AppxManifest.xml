@@ -5,7 +5,6 @@
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
-
   <Identity
     Name="MyStoreAppx"
     Publisher="CN=Astromedicomp.org"
@@ -24,7 +23,7 @@
   </Dependencies>
 
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="en-US"/>
   </Resources>
 
   <Applications>
