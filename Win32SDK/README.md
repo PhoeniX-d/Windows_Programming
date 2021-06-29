@@ -59,7 +59,7 @@
   link [name of obj file] /DLL /DEF:[Name of .def file] user32.lib kernel32.lib gdi32.lib /subsystem:windows
   ```
  
-## D. How to execute COM - ClassFactory and Containement code
+## D. How to execute COM - ClassFactory and Containment code
 1. compile
   ```
   cl /c /EHsc [name of source file]
